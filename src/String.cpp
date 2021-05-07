@@ -1,4 +1,4 @@
-#include "String.h"
+#include "../include/String.h"
 
 void String::copy(const String &_String)
 {
