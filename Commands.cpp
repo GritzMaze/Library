@@ -167,7 +167,7 @@ void Commands::mainmenu()
     gotoxy(20, 21);
     std::cout << FOOTER << FOOTER << "\xB2";
     gotoxy(20, 23);
-    std::cout << "Enter your choice:";
+    std::cout << "Enter your choice: ";
     this->choice();
 }
 
