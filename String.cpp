@@ -56,7 +56,9 @@ String::~String()
 }
 
 String& String::operator=(const String &other) {
+    if(this != &other && other.string != nullptr) {
     this->copy(other);
+    }
     return *this;
 }
 
@@ -94,13 +96,14 @@ bool String::operator==(const String &_String) const
     if (this->size != _String.size){
         return false;
     }
-
+    else {
     for (int i = 0; i < this->size; i++)
     {
         if (this->string[i] != _String.string[i])
             return false;
     }
     return true;
+    }
 }
 
 bool String ::operator==(const char *other) const
@@ -288,8 +291,10 @@ const int String::getCapacity() const
 
 void String::setString(const char *_string)
 {
-    delete [] this->string;
-    this->size = strlen(_string) + 1;
+    if(this->string != nullptr) {
+    erase();
+    }
+    this->size = strlen(_string);
     this->capacity = this->size + 1;
     this->string = new char[size];
     strncpy(this->string, _string, strlen(_string) + 1);

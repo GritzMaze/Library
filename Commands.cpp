@@ -26,58 +26,53 @@ void Commands::choice()
     {
     case '1':
         //addbooks();
-        printf("adding book");
+        std::cout << "adding book";
         break;
     case '2':
         //deletebooks();
-        printf("deleting book");
+        std::cout << "deleting book";
         break;
     case '3':
         //searchbooks();
-        printf("searching for book");
+        std::cout << "searching for book";
         break;
     case '4':
         //editbooks();
-        printf("Editing book");
+        std::cout << "Editing book";
         break;
     case '5':
         //viewbooks();
-        printf("viewing book");
+        std::cout << "viewing book";
         break;
     case '6':
         login();
-        //printf("Login book");
+        //std::cout << "Login book";
         break;
     case '7':
     {
-        system("cls");
-        gotoxy(18, 3);
-        std::cout << "\tLibrary";
-        gotoxy(18, 4);
-        std::cout << "\tMini Project in C++";
-        gotoxy(18, 5);
-        std::cout << "\tis brought to you by";
-        gotoxy(18, 7);
-        std::cout << "\tVesselin Jivkov";
-        gotoxy(16, 8);
-        std::cout << "******************************************";
-        gotoxy(16, 10);
-        std::cout << "*******************************************";
-        gotoxy(16, 11);
-        std::cout << "*******************************************";
-        gotoxy(16, 13);
-        std::cout << "********************************************";
-        gotoxy(10, 17);
-        std::cout << "Exiting in 3 second...........>";
-        Sleep(3000);
-        exit(0);
+        close();
+        break;
     }
+    case '8':
+        {
+            if(!(currentUser.isAdmin() && this->isLogged)) {
+                gotoxy(10, 23);
+                std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
+                if (getch()){
+                    mainmenu();
+                }
+            } else std::cout << "Admun panel";
+            //else admin_panel();
+            //mainmenu();
+            break;
+        }
     default:
     {
-        gotoxy(10, 23);
+        gotoxy(10, 25);
         std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
         if (getch())
             mainmenu();
+            break;
     }
     }
 }
@@ -164,22 +159,65 @@ void Commands::mainmenu()
     std::cout << "\t\t Exits the application.";
     gotoxy(90, 19);
     std::cout << BODYRIGHT;
+    if(this->isLogged && currentUser.isAdmin())  {
+        gotoxy(20, 21);
+        std::cout << BODYLEFT << " 8. ADMIN PANEL";
+        std::cout << "\t\t Managing all the users.";
+        gotoxy(90, 21);
+        std::cout << BODYRIGHT;
+        gotoxy(20, 23);
+        std::cout << FOOTER << FOOTER << "\xB2";
+        gotoxy(20, 25);
+    }
+    else {
     gotoxy(20, 21);
     std::cout << FOOTER << FOOTER << "\xB2";
     gotoxy(20, 23);
-    std::cout << "Enter your choice: ";
+    }
+    std::cout << "Enter your choice:";
     this->choice();
+}
+
+void Commands::close() {
+    system("cls");
+    gotoxy(18, 3);
+    std::cout << "\tLibrary";
+    gotoxy(18, 4);
+    std::cout << "\tMini Project in C++";
+    gotoxy(18, 5);
+    std::cout << "\tis brought to you by";
+    gotoxy(18, 7);
+    std::cout << "\tVesselin Jivkov";
+    gotoxy(16, 8);
+    std::cout << "******************************************";
+    gotoxy(16, 10);
+    std::cout << "*******************************************";
+    gotoxy(16, 11);
+    std::cout << "*******************************************";
+    gotoxy(16, 13);
+    std::cout << "********************************************";
+    gotoxy(10, 17);
+    std::cout << "Exiting in 3 second...........>";
+    Sleep(3000);
+    exit(0);
 }
 
 void Commands::login()
 {
     system("cls");
     gotoxy(15, 7);
+    
+    if(this->isLogged) {
+        this->isLogged = false;
+        std::cout << "\n";
+        std::cout << "Logout successfuly! Returning to main menu in 3 seconds!";
+        Sleep(3000);
+        mainmenu();
+    }
 
     String temp;
     char ch, pass[25];
     int i = 0;
-    std::cout << currentUser.getUsername();
     std::cout << "Enter username:";
     std::cin >> temp;
 
@@ -203,6 +241,7 @@ void Commands::login()
         if (currentUser.getPassword() == pass)
         {
             this->isLogged = true;
+            std::cout << "\n";
             std::cout << "Login successfuly! Returning to main menu in 3 seconds!";
             Sleep(3000);
             mainmenu();

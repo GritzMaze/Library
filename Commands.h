@@ -20,4 +20,5 @@
             void start();
             void mainmenu();
             void login();
+            void close();
     };
