@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cstring>
+#include <conio.h>
 
 class String
 {
@@ -21,14 +22,14 @@ public:
     String &operator=(const String &);
     String &operator+=(const String &);
     String operator+(const String &);
-    bool operator==(const String &);
-    bool operator!=(const String &);
+    bool operator==(const String &) const;
+    bool operator!=(const String &) const;
 
     String &operator=(const char *);
 
-    bool operator==(const char *);
-    bool operator==(const char &);
-    bool operator!=(const char *);
+    bool operator==(const char *) const;
+    bool operator==(const char &) const;
+    bool operator!=(const char *) const;
 
     const char& operator[](const int&) const;
     char& operator[](int&);

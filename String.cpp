@@ -1,4 +1,4 @@
-#include "../include/String.h"
+#include "String.h"
 
 void String::copy(const String &_String)
 {
@@ -89,7 +89,7 @@ String &String::operator+=(const String &_String)
     return *this = *this + _String;
 }
 
-bool String::operator==(const String &_String)
+bool String::operator==(const String &_String) const
 {
     if (this->size != _String.size){
         return false;
@@ -103,7 +103,7 @@ bool String::operator==(const String &_String)
     return true;
 }
 
-bool String ::operator==(const char *other)
+bool String ::operator==(const char *other) const
 {
     if (this->size != strlen(other))
     {
@@ -122,7 +122,7 @@ bool String ::operator==(const char *other)
     }
 }
 
-bool String ::operator==(const char &other)
+bool String ::operator==(const char &other) const
 {
     if (this->size > 1)
     {
@@ -135,12 +135,12 @@ bool String ::operator==(const char &other)
     return true;
 }
 
-bool String::operator!=(const String &_String)
+bool String::operator!=(const String &_String) const 
 {
     return !(*this == _String);
 }
 
-bool String ::operator!=(const char *other) { return !(*this == other); }
+bool String ::operator!=(const char *other) const { return !(*this == other); }
 
 const char& String::operator[](const int &index) const
 {
@@ -160,17 +160,34 @@ std::ostream &operator<<(std::ostream& out, const String& string) {
 }
 
 std::istream &operator>>(std::istream& in, String& string) {
-    std::cout << "Enter size: ";
-    in >> string.size;
-    string.capacity = string.size;
-    std::cout << "Enter string: ";
-    for(int i = 0; i < string.size; i++) {
-        in >> string.string[i];
-    }
+    // std::cout << "Enter size: ";
+    // in >> string.size;
+    // string.capacity = string.size;
+    // std::cout << "Enter string: ";
+    // for(int i = 0; i < string.size; i++) {
+    //     in >> string.string[i];
+    // }
 
-    std::cout << std::endl;
-    return in;
-}
+    char ch;
+    int i = 0;
+
+    while (ch != 13)
+    {
+        ch = getch();
+        std::cout<< ch;
+
+        if (ch != 13 && ch != 8)
+        {
+            string.string[i] = ch;
+            i++;
+        }
+    }
+    string[i] = '\0';
+    string.size = strlen(string.string);
+    string.capacity = string.size + 1;
+
+        return in;
+    }
 
     void String::add(const char &symb)
 {

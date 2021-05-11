@@ -1,7 +1,8 @@
-#include <iostream>
+#include "Commands.h"
 
 int main() {
-    std::cout << "Hello world!";
+    Commands app;
+    app.start();
 
     return 0;
 }
