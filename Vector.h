@@ -25,9 +25,10 @@ public:
 
     void pushBack(const T&);
     void pushFront(const T&);
-    T& back();
-    T& front();
+    const T& back() const;
+    const T& front() const;
     void popBack();
+    bool isExist(const T&) const;
 
 
     const T getElem(const size_t&) const;
@@ -63,11 +64,7 @@ void Vector<T>::resize()
     {
         temp[i] = arr[i];
     }
-    T temp2;
-    for(int i = size; i < capacity; i++) {
-        temp[i] = temp2;
-    }
-    erase();
+    delete [] arr;
     arr = temp;
 }
 
@@ -85,7 +82,7 @@ void Vector<T>::copy(const Vector<T> &other)
 }
 
 template <typename T>
-Vector<T>::Vector() : size{0}, capacity{1}
+Vector<T>::Vector() : size{0}, capacity{8}
 {
     T temp;
     arr = new T[capacity];
@@ -134,12 +131,12 @@ const T& Vector<T>::operator[](const int &index) const
     {
         return arr[index];
     }
-    else
-    {
-        return arr[size];
-    }
+
+    return arr[size];
 }
 
+
+//todo:fix handling
 template <typename T>
 T& Vector<T>::operator[](int &index)
 {
@@ -147,10 +144,8 @@ T& Vector<T>::operator[](int &index)
     {
         return arr[index];
     }
-    else
-    {
-        return arr[size];
-    }
+    
+    return arr[size];
 }
 
 template <typename T>
@@ -187,23 +182,35 @@ void Vector<T>::popBack()
 }
 
 template <typename T>
-T &Vector<T>::front()
+const T &Vector<T>::front() const
 {
     return arr[0];
 }
 
 template <typename T>
-T &Vector<T>::back()
+const T &Vector<T>::back() const
 {
     return arr[size - 1];
+}
+
+template <class T>
+bool Vector<T>::isExist(const T& elem) const {
+    for(int i = 0; i < this->size; i++) {
+        if(elem == arr[i]) { 
+            return true;
+        }
+    }
+    return false;
 }
 
 template <typename T>
 const T Vector<T>::getElem(const size_t &index) const
 {
 
-    if (index < size)
+    if (index < size) {
         return this->arr[index];
+    }
+    return arr[size];
 }
 
 template <typename T>

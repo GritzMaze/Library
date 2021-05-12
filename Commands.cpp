@@ -17,6 +17,7 @@ Commands::Commands()
 {
     User temp("admin", "i<3c++", true);
     this->currentUser = temp;
+    this->users.pushBack(currentUser);
     this->isLogged = false;
 }
 
@@ -54,25 +55,29 @@ void Commands::choice()
         break;
     }
     case '8':
+    {
+        if (!(currentUser.isAdmin() && this->isLogged))
         {
-            if(!(currentUser.isAdmin() && this->isLogged)) {
-                gotoxy(10, 23);
-                std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
-                if (getch()){
-                    mainmenu();
-                }
-            } else std::cout << "Admun panel";
-            //else admin_panel();
-            //mainmenu();
-            break;
+            gotoxy(10, 23);
+            std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
+            if (getch())
+            {
+                mainmenu();
+            }
         }
+        else
+            std::cout << "Admun panel";
+        //else admin_panel();
+        //mainmenu();
+        break;
+    }
     default:
     {
         gotoxy(10, 25);
         std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
         if (getch())
             mainmenu();
-            break;
+        break;
     }
     }
 }
@@ -159,7 +164,8 @@ void Commands::mainmenu()
     std::cout << "\t\t Exits the application.";
     gotoxy(90, 19);
     std::cout << BODYRIGHT;
-    if(this->isLogged && currentUser.isAdmin())  {
+    if (this->isLogged && currentUser.isAdmin())
+    {
         gotoxy(20, 21);
         std::cout << BODYLEFT << " 8. ADMIN PANEL";
         std::cout << "\t\t Managing all the users.";
@@ -169,16 +175,18 @@ void Commands::mainmenu()
         std::cout << FOOTER << FOOTER << "\xB2";
         gotoxy(20, 25);
     }
-    else {
-    gotoxy(20, 21);
-    std::cout << FOOTER << FOOTER << "\xB2";
-    gotoxy(20, 23);
+    else
+    {
+        gotoxy(20, 21);
+        std::cout << FOOTER << FOOTER << "\xB2";
+        gotoxy(20, 23);
     }
     std::cout << "Enter your choice:";
     this->choice();
 }
 
-void Commands::close() {
+void Commands::close()
+{
     system("cls");
     gotoxy(18, 3);
     std::cout << "\tLibrary";
@@ -206,8 +214,9 @@ void Commands::login()
 {
     system("cls");
     gotoxy(15, 7);
-    
-    if(this->isLogged) {
+
+    if (this->isLogged)
+    {
         this->isLogged = false;
         std::cout << "\n";
         std::cout << "Logout successfuly! Returning to main menu in 3 seconds!";
@@ -216,45 +225,49 @@ void Commands::login()
     }
 
     String temp;
-    char ch, pass[25];
+    char ch;
+    // Vector<char> pass;
+    char pass[25];
     int i = 0;
     std::cout << "Enter username:";
     std::cin >> temp;
 
-    if (temp == currentUser.getUsername())
+    gotoxy(15, 9);
+    std::cout << "Enter password:";
+    while (ch != 13)
     {
-
-        gotoxy(15, 9);
-        std::cout << "Enter password:";
-        while (ch != 13)
+        ch = getch();
+        // if(ch == 8) {
+        //     --i;
+        //     printf('\b');
+        //     continue;
+        // }
+        if (ch != 13 && ch != 8)
         {
-            ch = getch();
-
-            if (ch != 13 && ch != 8)
-            {
-                putch('*');
-                pass[i] = ch;
-                i++;
-            }
-        }
-        pass[i] = '\0';
-        if (currentUser.getPassword() == pass)
-        {
-            this->isLogged = true;
-            std::cout << "\n";
-            std::cout << "Login successfuly! Returning to main menu in 3 seconds!";
-            Sleep(3000);
-            mainmenu();
-        }
-        else
-        {
-            std::cout << "Incorrect password! Returning to main menu!";
-            Sleep(3000);
-            mainmenu();
+            putch('*');
+            pass[i] = ch;
+            i++;
         }
     }
-    else {
-        std::cout << "No user is matching this name! Returning to main menu!";
+    pass[i] = '\0';
+
+    User temp_user;
+
+    temp_user.setUsername(temp);
+    temp = pass;
+
+    temp_user.setPass(temp);
+
+    if (users.isExist(temp_user))
+    {
+        this->isLogged = true;
+        std::cout << "\n";
+        std::cout << "Login successfuly! Returning to main menu in 3 seconds!";
+        Sleep(3000);
+        mainmenu();
+    } else
+    {
+        std::cout << "Incorrect credentials! Returning to main menu!";
         Sleep(3000);
         mainmenu();
     }

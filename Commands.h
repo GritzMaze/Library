@@ -12,13 +12,14 @@
         private:
             User currentUser;
             bool isLogged;
+            Vector<User> users;
 
             void choice();
+            void mainmenu();
+            void login();
+            void close();
 
         public:
             Commands();
             void start();
-            void mainmenu();
-            void login();
-            void close();
     };

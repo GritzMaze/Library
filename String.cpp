@@ -1,27 +1,27 @@
 #include "String.h"
 
-void String::copy(const String &_String)
+void String::copy(const String &other)
 {
-    setString(_String.string);
-    setSize(_String.size);
-    setCapacity(_String.capacity);
+    setString(other.data);
+    setSize(other.size);
+    setCapacity(other.capacity);
 }
 
 void String::erase()
 {
     this->size = 0;
     this->capacity = 0;
-    if(string != nullptr) {
-    delete[] this->string;
+    if(data != nullptr) {
+    delete[] this->data;
     }
 }
 
 String::String()
 {
-    this->size = 6;
+    this->size = 0;
     this->capacity = 6;
-    this->string = new char[this->capacity];
-    strncpy(this->string, "Empty", 6);
+    this->data = new char[this->capacity];
+    strncpy(this->data, "\0", 6);
 }
 
 void String::resize()
@@ -30,33 +30,33 @@ void String::resize()
     char *biggerString = new char[this->capacity];
     for (int i = 0; i < size; i++)
     {
-        biggerString[i] = this->string[i];
+        biggerString[i] = this->data[i];
     }
-    delete [] string;
-    this->string = biggerString;
+    delete [] data;
+    this->data = biggerString;
 }
 
-String::String(const String &_String)
+String::String(const String &other)
 {
-    copy(_String);
+    copy(other);
 }
 
-String::String(const char *_str)
+String::String(const char *other)
 {
-    string = new char(strlen(_str) + 1);
-    strncpy(string, _str, strlen(_str) + 1);
-    size = strlen(_str);
+    data = new char(strlen(other) + 1);
+    strncpy(data, other, strlen(other) + 1);
+    size = strlen(other);
 }
 
 String::~String()
 {
-    if(string != nullptr) {
+    if(data != nullptr) {
     erase();
     }
 }
 
 String& String::operator=(const String &other) {
-    if(this != &other && other.string != nullptr) {
+    if(this != &other && other.data != nullptr) {
     this->copy(other);
     }
     return *this;
@@ -66,40 +66,56 @@ String &String ::operator=(const char *other)
 {
     char *temp = new char[strlen(other) + 1];
     strncpy(temp, other, strlen(other) + 1);
-    if (string != nullptr)
+    if (data != nullptr)
     {
         erase();
     }
-    string = temp;
+    data = temp;
     size = strlen(other);
     return *this;
 }
 
-String String::operator+(const String &_String)
+String &String ::operator=(const Vector<char> &other)
+{
+    char *temp = new char[other.getSize()];
+    if (data != nullptr)
+    {
+        erase();
+    }
+    for(int i = 0; i < other.getSize(); i++) {
+        temp[i] = other[i];
+    }
+    data = temp;
+    size = strlen(data);
+    delete [] temp;
+    return *this;
+}
+
+String String::operator+(const String &other)
 {
     String temp;
     temp = *this;
-    for (int i = 0; i < _String.size; i++)
+    for (int i = 0; i < other.size; i++)
     {
-        temp.add(_String.string[i]);
+        temp.add(other.data[i]);
     }
     return temp;
 }
 
-String &String::operator+=(const String &_String)
+String& String::operator+=(const String &other)
 {
-    return *this = *this + _String;
+    return *this = *this + other;
 }
 
-bool String::operator==(const String &_String) const
+bool String::operator==(const String &other) const
 {
-    if (this->size != _String.size){
+    if (this->size != other.size){
         return false;
     }
     else {
     for (int i = 0; i < this->size; i++)
     {
-        if (this->string[i] != _String.string[i])
+        if (this->data[i] != other.data[i])
             return false;
     }
     return true;
@@ -116,7 +132,7 @@ bool String ::operator==(const char *other) const
     {
         for (int i = 0; i < size; i++)
         {
-            if (this->string[i] != other[i])
+            if (this->data[i] != other[i])
             {
                 return false;
             }
@@ -131,33 +147,33 @@ bool String ::operator==(const char &other) const
     {
         return false;
     }
-    if (string[0] != other)
+    if (data[0] != other)
     {
         return false;
     }
     return true;
 }
 
-bool String::operator!=(const String &_String) const 
+bool String::operator!=(const String &other) const 
 {
-    return !(*this == _String);
+    return !(*this == other);
 }
 
 bool String ::operator!=(const char *other) const { return !(*this == other); }
 
 const char& String::operator[](const int &index) const
 {
-    return this->string[index];
+    return this->data[index];
 }
 
 char& String::operator[](int &index)
 {
-    return this->string[index];
+    return this->data[index];
 }
 
 std::ostream &operator<<(std::ostream& out, const String& string) {
     
-        out << string.string;
+        out << string.data;
 
     return out;
 }
@@ -177,16 +193,21 @@ std::istream &operator>>(std::istream& in, String& string) {
     while (ch != 13)
     {
         ch = getch();
-        std::cout<< ch;
+        std::cout << ch;
+        // if(ch == 8) {
+        //         --i;
+        //        putch('\b');
+        //     continue;
+        // }
 
         if (ch != 13 && ch != 8)
         {
-            string.string[i] = ch;
+            string.data[i] = ch;
             i++;
         }
     }
     string[i] = '\0';
-    string.size = strlen(string.string);
+    string.size = i;
     string.capacity = string.size + 1;
 
         return in;
@@ -197,8 +218,8 @@ std::istream &operator>>(std::istream& in, String& string) {
     if (capacity + 1 <= this->size)
         this->resize();
 
-    this->string[this->size++] = symb;
-    this->string[this->size] = '\0';
+    this->data[this->size++] = symb;
+    this->data[this->size] = '\0';
 }
 
 void String::insertAt(const char &symb, int index)
@@ -210,9 +231,9 @@ void String::insertAt(const char &symb, int index)
     int i = this->size;
     for (; i > index; i--)
     {
-        this->string[i] = this->string[i - 1];
+        this->data[i] = this->data[i - 1];
     }
-    this->string[index] = symb;
+    this->data[index] = symb;
 }
 
 void String::removeAt(int& index)
@@ -224,7 +245,7 @@ void String::removeAt(int& index)
     int i = index;
     for (; i < this->size; i++)
     {
-        this->string[i] = string[i + 1];
+        this->data[i] = data[i + 1];
     }
     this->size--;
 }
@@ -236,7 +257,7 @@ void String::trimStart()
     int i = 0;
     for (; i < this->size; i++)
     {
-        this->string[i] = string[i + 1];
+        this->data[i] = data[i + 1];
     }
     this->size--;
 }
@@ -246,7 +267,7 @@ void String::trimEnd()
     if (size > 0)
     {
         this->size--;
-        this->string[size] = '\0';
+        this->data[size] = '\0';
     }
 }
 
@@ -258,7 +279,7 @@ void String::trimStart(int num)
     {
         for (int i = num; i < this->size; i++)
         {
-            this->string[i] = string[i + 1];
+            this->data[i] = data[i + 1];
         }
         num--;
         this->size--;
@@ -270,7 +291,7 @@ void String::trimEnd(int& num)
     if (size > 0)
     {
         this->size -= num;
-        this->string[size] = '\0';
+        this->data[size] = '\0';
     }
 }
 
@@ -281,7 +302,7 @@ const int String::getLength() const
 
 const char *String::getString() const
 {
-    return this->string;
+    return this->data;
 }
 
 const int String::getCapacity() const
@@ -289,33 +310,33 @@ const int String::getCapacity() const
     return this->capacity;
 }
 
-void String::setString(const char *_string)
+void String::setString(const char *other)
 {
-    if(this->string != nullptr) {
+    if(this->data != nullptr) {
     erase();
     }
-    this->size = strlen(_string);
+    this->size = strlen(other);
     this->capacity = this->size + 1;
-    this->string = new char[size];
-    strncpy(this->string, _string, strlen(_string) + 1);
+    this->data = new char[size];
+    strncpy(this->data, other, strlen(other) + 1);
 }
 
 // Kinda not secure and deff not necessary but im gonna put it anyway
-void String::setSize(const int _size)
+void String::setSize(const int size)
 {
-    if (_size > this->size)
-        this->size = _size;
+    if (size > this->size)
+        this->size = size;
 }
 
-void String::setCapacity(const int _capacity)
+void String::setCapacity(const int capacity)
 {
-    if (_capacity > this->size)
-        this->capacity = _capacity;
+    if (capacity > this->size)
+        this->capacity = capacity;
 }
 
 const void String::print() const
 {
-    std::cout << "String: " << this->string << std::endl;
+    std::cout << "String: " << this->data << std::endl;
     std::cout << "Size: " << this->size << std::endl;
     std::cout << "Capacity: " << this->capacity << std::endl;
 }

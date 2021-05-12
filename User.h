@@ -17,6 +17,8 @@ class User {
         User(const User&);
 
     User& operator=(const User&);
+    bool operator==(const User&) const;
+    bool operator!=(const User&) const;
 
     void setUsername(const String&);
     void setPass(const String&);
@@ -24,5 +26,7 @@ class User {
 
     const String getUsername() const;
     const String getPassword() const;
-    bool isAdmin();
+    bool isAdmin() const;
+
+    friend std::ostream &operator<<(std::ostream &, const User &);
 };

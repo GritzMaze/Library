@@ -28,6 +28,18 @@ User& User::operator=(const User& other) {
     return *this;
 }
 
+bool User::operator==(const User& other) const {
+    if(this->username == other.username
+        && this->password == other.password) {
+            return true;
+        }
+    return false;
+}
+
+bool User::operator!=(const User& other) const {
+    return (!(*this == other));
+}
+
 const String User::getUsername() const {
     return this->username;
 }
@@ -36,6 +48,15 @@ const String User::getPassword() const {
     return this->password;
 }
 
-bool User::isAdmin() {
+bool User::isAdmin() const {
     return this->admin;
+}
+
+std::ostream &operator<<(std::ostream &out, const User &user) {
+    std::cout << "Username: " << user.getUsername() << std::endl;
+    std::cout << "Password: " << user.getPassword() << std::endl;
+    std::cout << "Admin: ";
+    (user.isAdmin() ? (std::cout << "Yes") : (std::cout << "No"));
+    std::cout << std::endl;
+    return out;
 }

@@ -2,11 +2,12 @@
 #include <iostream>
 #include <cstring>
 #include <conio.h>
+#include "Vector.h"
 
 class String
 {
 private:
-    char *string;
+    char *data;
     int size;
     int capacity;
 
@@ -26,6 +27,7 @@ public:
     bool operator!=(const String &) const;
 
     String &operator=(const char *);
+    String &operator=(const Vector<char>&);
 
     bool operator==(const char *) const;
     bool operator==(const char &) const;
