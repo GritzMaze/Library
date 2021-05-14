@@ -20,8 +20,8 @@ String::String()
 {
     this->size = 0;
     this->capacity = 6;
-    this->data = new char[this->capacity];
-    strncpy(this->data, "\0", 6);
+    this->data = new char[1];
+    this->data[1] = '\0';
 }
 
 void String::resize()

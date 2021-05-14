@@ -11,7 +11,7 @@ class Book {
     unsigned int yearOfPublish;
     Vector<String> keywords;
     double rating;
-    unsigned int id;
+    static unsigned int id;
 
     public:
         Book();
