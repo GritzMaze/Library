@@ -1,0 +1,5 @@
+C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build/CMakeFiles/edit_cache.dir
+C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build/CMakeFiles/library.dir
+C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build/CMakeFiles/package.dir
+C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build/CMakeFiles/package_source.dir
+C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build/CMakeFiles/rebuild_cache.dir

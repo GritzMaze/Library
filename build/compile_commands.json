@@ -1,0 +1,27 @@
+[
+{
+  "directory": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe  @CMakeFiles/library.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\library.dir\\library.cpp.obj -c C:\\Users\\Sprint\\github\\OOP_2020_2021\\Libraby_project\\library.cpp",
+  "file": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/library.cpp"
+},
+{
+  "directory": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe  @CMakeFiles/library.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\library.dir\\src\\Commands.cpp.obj -c C:\\Users\\Sprint\\github\\OOP_2020_2021\\Libraby_project\\src\\Commands.cpp",
+  "file": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/src/Commands.cpp"
+},
+{
+  "directory": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe  @CMakeFiles/library.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\library.dir\\src\\String.cpp.obj -c C:\\Users\\Sprint\\github\\OOP_2020_2021\\Libraby_project\\src\\String.cpp",
+  "file": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/src/String.cpp"
+},
+{
+  "directory": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe  @CMakeFiles/library.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\library.dir\\src\\Draw.cpp.obj -c C:\\Users\\Sprint\\github\\OOP_2020_2021\\Libraby_project\\src\\Draw.cpp",
+  "file": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/src/Draw.cpp"
+},
+{
+  "directory": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe  @CMakeFiles/library.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\library.dir\\src\\User.cpp.obj -c C:\\Users\\Sprint\\github\\OOP_2020_2021\\Libraby_project\\src\\User.cpp",
+  "file": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/src/User.cpp"
+}
+]
