@@ -23,5 +23,10 @@
   "directory": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build",
   "command": "C:\\MinGW\\bin\\mingw32-g++.exe  @CMakeFiles/library.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\library.dir\\src\\User.cpp.obj -c C:\\Users\\Sprint\\github\\OOP_2020_2021\\Libraby_project\\src\\User.cpp",
   "file": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/src/User.cpp"
+},
+{
+  "directory": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/build",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe  @CMakeFiles/library.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\library.dir\\src\\Book.cpp.obj -c C:\\Users\\Sprint\\github\\OOP_2020_2021\\Libraby_project\\src\\Book.cpp",
+  "file": "C:/Users/Sprint/github/OOP_2020_2021/Libraby_project/src/Book.cpp"
 }
 ]

@@ -127,25 +127,14 @@ Vector<T>& Vector<T>::operator=(const Vector<T> &other)
 template <typename T>
 const T& Vector<T>::operator[](const int &index) const
 {
-    if (index <= size)
-    {
         return arr[index];
-    }
-
-    return arr[size];
 }
 
 
-//todo:fix handling
 template <typename T>
 T& Vector<T>::operator[](int &index)
 {
-    if (index <= size)
-    {
         return arr[index];
-    }
-    
-    return arr[size];
 }
 
 template <typename T>
@@ -230,7 +219,8 @@ const void Vector<T>::print() const
 {
     for (int i = 0; i < size; i++)
     {
-        std::cout << arr[i] << " " << std::endl;
+        std::cout << arr[i];
+        (i<size-1 ? std::cout << ", " : std::cout << "");
     }
     std::cout << std::endl;
 }

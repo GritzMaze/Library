@@ -172,6 +172,30 @@ library.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\library.dir\build.make CMakeFiles/library.dir/library.cpp.s
 .PHONY : library.cpp.s
 
+src/Book.obj: src/Book.cpp.obj
+.PHONY : src/Book.obj
+
+# target to build an object file
+src/Book.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\library.dir\build.make CMakeFiles/library.dir/src/Book.cpp.obj
+.PHONY : src/Book.cpp.obj
+
+src/Book.i: src/Book.cpp.i
+.PHONY : src/Book.i
+
+# target to preprocess a source file
+src/Book.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\library.dir\build.make CMakeFiles/library.dir/src/Book.cpp.i
+.PHONY : src/Book.cpp.i
+
+src/Book.s: src/Book.cpp.s
+.PHONY : src/Book.s
+
+# target to generate assembly for a file
+src/Book.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\library.dir\build.make CMakeFiles/library.dir/src/Book.cpp.s
+.PHONY : src/Book.cpp.s
+
 src/Commands.obj: src/Commands.cpp.obj
 .PHONY : src/Commands.obj
 
@@ -282,6 +306,9 @@ help:
 	@echo ... library.obj
 	@echo ... library.i
 	@echo ... library.s
+	@echo ... src/Book.obj
+	@echo ... src/Book.i
+	@echo ... src/Book.s
 	@echo ... src/Commands.obj
 	@echo ... src/Commands.i
 	@echo ... src/Commands.s

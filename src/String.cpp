@@ -190,6 +190,7 @@ std::istream &operator>>(std::istream& in, String& string) {
     char ch;
     int i = 0;
 
+    // while not Enter
     while (ch != 13)
     {
         ch = getch();
@@ -200,6 +201,7 @@ std::istream &operator>>(std::istream& in, String& string) {
         //     continue;
         // }
 
+        // While not Enter or Backspace
         if (ch != 13 && ch != 8)
         {
             string.data[i] = ch;

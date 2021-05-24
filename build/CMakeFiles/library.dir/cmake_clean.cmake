@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/library.dir/library.cpp.obj"
   "CMakeFiles/library.dir/library.cpp.obj.d"
+  "CMakeFiles/library.dir/src/Book.cpp.obj"
+  "CMakeFiles/library.dir/src/Book.cpp.obj.d"
   "CMakeFiles/library.dir/src/Commands.cpp.obj"
   "CMakeFiles/library.dir/src/Commands.cpp.obj.d"
   "CMakeFiles/library.dir/src/Draw.cpp.obj"

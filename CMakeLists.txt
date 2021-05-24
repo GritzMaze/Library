@@ -17,4 +17,5 @@ add_executable(library "library.cpp"
                 "src/String.cpp"
                 "src/Draw.cpp"
                 "src/User.cpp"
+                "src/Book.cpp"
                 )
