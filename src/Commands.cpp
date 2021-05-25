@@ -107,27 +107,29 @@ void Commands::login()
 
     String temp;
     char ch;
-    // Vector<char> pass;
     char pass[25];
+    const char BACKSPACE = 8;
+    const char RETURN = 13;
     int i = 0;
     std::cout << "Enter username:";
     std::cin >> temp;
 
     Draw::gotoxy(15, 9);
     std::cout << "Enter password:";
-    while (ch != 13)
+    while (ch != RETURN)
     {
         ch = getch();
-        // if(ch == 8) {
-        //     --i;
-        //     printf('\b');
-        //     continue;
-        // }
-        if (ch != 13 && ch != 8)
+        if (ch != RETURN && ch != BACKSPACE)
         {
             putch('*');
             pass[i] = ch;
             i++;
+        }
+        if (ch == BACKSPACE && i > 0)
+        {
+            --i;
+            std::cout << "\b \b";
+            continue;
         }
     }
     pass[i] = '\0';

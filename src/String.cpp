@@ -179,40 +179,11 @@ std::ostream &operator<<(std::ostream& out, const String& string) {
 }
 
 std::istream &operator>>(std::istream& in, String& string) {
-    // std::cout << "Enter size: ";
-    // in >> string.size;
-    // string.capacity = string.size;
-    // std::cout << "Enter string: ";
-    // for(int i = 0; i < string.size; i++) {
-    //     in >> string.string[i];
-    // }
-
-    char ch;
-    int i = 0;
-
-    // while not Enter
-    while (ch != 13)
-    {
-        ch = getch();
-        std::cout << ch;
-        // if(ch == 8) {
-        //         --i;
-        //        putch('\b');
-        //     continue;
-        // }
-
-        // While not Enter or Backspace
-        if (ch != 13 && ch != 8)
-        {
-            string.data[i] = ch;
-            i++;
-        }
-    }
-    string[i] = '\0';
-    string.size = i;
-    string.capacity = string.size + 1;
-
-        return in;
+    char *buffer = new char[1000];
+    in >> buffer;
+    string = String{buffer};
+    delete[] buffer;
+    return in;
     }
 
     void String::add(const char &symb)
