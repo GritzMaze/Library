@@ -44,6 +44,8 @@
 *.msp
 *.txz
 
+# Ignore cmake folder
+build/
 
 ### vscode ###
 .vscode/*
