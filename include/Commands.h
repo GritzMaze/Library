@@ -4,20 +4,25 @@
 #include "String.h"
 #include <windows.h>
 #include <conio.h>
-#include "User.h"
+#include "Database.h"
+#include "UserDB.h"
+#include "BookDB.h"
 
-    class Commands
+class Commands
     {
 
         private:
-            User currentUser;
+            bool isAdmin;
             bool isLogged;
-            Vector<User> users;
+            UserDB users;
+            BookDB books;
 
             void choice();
             void mainmenu();
             void login();
             void close();
+            void addBooks();
+            void viewBooks();
 
         public:
             Commands();

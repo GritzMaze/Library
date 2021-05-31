@@ -1,6 +1,7 @@
 #pragma once
 #include "String.h"
 #include "Vector.h"
+#include "Draw.h"
 
 class Book {
     private:
@@ -27,6 +28,7 @@ class Book {
     void setDesc(const String&);
     void setYOP(const size_t&);
     void setKeyWords(const Vector<String> keywords);
+    void setKeyWordsFromInput();
     void setRating(const double&);
 
     const String& getAuthor() const;
@@ -39,5 +41,6 @@ class Book {
     const size_t& getID() const;
 
     const void partlyPrint() const;
+    const void partlyPrintVertical(const int&) const;
     const void print() const;
 };

@@ -82,15 +82,20 @@ void Vector<T>::copy(const Vector<T> &other)
 }
 
 template <typename T>
-Vector<T>::Vector() : size{0}, capacity{8}
+Vector<T>::Vector() : size{0}, capacity{1}, arr{nullptr}
 {
-    T temp;
-    arr = new T[capacity];
-    arr[0] = temp;
+    try
+    {
+        arr = new T[capacity];
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Cannot create default constructor: " << e.what() << '\n';
+    }
 }
 
 template <typename T>
-Vector<T>::Vector(const T *o_arr, const size_t &o_size, const size_t &o_capacity)
+Vector<T>::Vector(const T *o_arr, const size_t &o_size, const size_t &o_capacity) : size{o_size}, capacity{o_capacity}
 {
     size = o_size;
     capacity = o_capacity;
@@ -104,9 +109,7 @@ Vector<T>::Vector(const T *o_arr, const size_t &o_size, const size_t &o_capacity
 template <typename T>
 Vector<T>::~Vector()
 {
-    if(arr != nullptr) {
     erase();
-    }
     size = 0;
     capacity = 0;
 }
@@ -116,9 +119,7 @@ Vector<T>& Vector<T>::operator=(const Vector<T> &other)
 {
     if (this != &other)
     {
-        if(arr != nullptr) {
         erase();
-        }
         copy(other);
     }
     return *this;

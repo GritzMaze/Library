@@ -4,9 +4,7 @@
 
 Commands::Commands()
 {
-    User temp("admin", "i<3c++", true);
-    this->currentUser = temp;
-    this->users.pushBack(currentUser);
+    this->isAdmin = false;
     this->isLogged = false;
 }
 
@@ -15,8 +13,7 @@ void Commands::choice()
     switch (getch())
     {
     case '1':
-        //addbooks();
-        std::cout << "adding book";
+        addBooks();
         break;
     case '2':
         //deletebooks();
@@ -31,8 +28,7 @@ void Commands::choice()
         std::cout << "Editing book";
         break;
     case '5':
-        //viewbooks();
-        std::cout << "viewing book";
+        viewBooks();
         break;
     case '6':
         login();
@@ -45,7 +41,7 @@ void Commands::choice()
     }
     case '8':
     {
-        if (!(currentUser.isAdmin() && this->isLogged))
+        if (!(this->isAdmin && this->isLogged))
         {
             Draw::gotoxy(10, 23);
             std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
@@ -80,10 +76,10 @@ void Commands::start()
 
 void Commands::mainmenu()
 {
-    Draw::drawMenu(this->isLogged, this->currentUser.isAdmin());
+    Draw::drawMenu(this->isLogged, this->isAdmin);
     
     std::cout << "Enter your choice:";
-    this->choice();
+    choice();
 }
 
 void Commands::close()
@@ -93,65 +89,20 @@ void Commands::close()
 
 void Commands::login()
 {
+    users.login(this->isLogged, this->isAdmin);
+    mainmenu();
+}
+
+void Commands::addBooks() {
     system("cls");
-    Draw::gotoxy(15, 7);
+    books.add();
+    Sleep(3000);
+    mainmenu();
+}
 
-    if (this->isLogged)
-    {
-        this->isLogged = false;
-        std::cout << "\n";
-        std::cout << "Logout successfuly! Returning to main menu in 3 seconds!";
-        Sleep(3000);
-        mainmenu();
-    }
-
-    String temp;
-    char ch;
-    char pass[25];
-    const char BACKSPACE = 8;
-    const char RETURN = 13;
-    int i = 0;
-    std::cout << "Enter username:";
-    std::cin >> temp;
-
-    Draw::gotoxy(15, 9);
-    std::cout << "Enter password:";
-    while (ch != RETURN)
-    {
-        ch = getch();
-        if (ch != RETURN && ch != BACKSPACE)
-        {
-            putch('*');
-            pass[i] = ch;
-            i++;
-        }
-        if (ch == BACKSPACE && i > 0)
-        {
-            --i;
-            std::cout << "\b \b";
-            continue;
-        }
-    }
-    pass[i] = '\0';
-
-    User temp_user;
-
-    temp_user.setUsername(temp);
-    temp = pass;
-
-    temp_user.setPass(temp);
-
-    if (users.isExist(temp_user))
-    {
-        this->isLogged = true;
-        std::cout << "\n";
-        std::cout << "Login successfuly! Returning to main menu in 3 seconds!";
-        Sleep(3000);
-        mainmenu();
-    } else
-    {
-        std::cout << "Incorrect credentials! Returning to main menu!";
-        Sleep(3000);
-        mainmenu();
-    }
+void Commands::viewBooks() {
+    system("cls");
+    books.view();
+    Sleep(10000);
+    mainmenu();
 }

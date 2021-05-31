@@ -70,6 +70,18 @@ void Draw::drawMenu(const bool &isLogged, const bool& isAdmin) {
     }
 }
 
+void Draw::drawSubmenu(const String& title1, const String& title2 = "", const String& title3 = "", const String& title4 = "") {
+    gotoxy(20, 5);
+    std::cout << title1;
+    gotoxy(50, 5);
+    std::cout << title2;
+    gotoxy(70,5);
+    std::cout << title3;
+    gotoxy(90,5);
+    std::cout << title4;
+    // gotoxy(90, 5);
+}
+
 void Draw::gotoxy(const int& x,const int& y)
 {
     static COORD coord = {0, 0};
@@ -131,4 +143,14 @@ void Draw::drawExit() {
     std::cout << "Exiting in 3 second...........>";
     Sleep(3000);
     exit(0);
+}
+
+void Draw::drawHeader(const String& title) {
+    gotoxy(20, 3);
+    std::cout << HEADER << " " << title << " " << HEADER;
+}
+
+void Draw::drawFooter(const int& y) {
+    gotoxy(20, y);
+    std::cout << FOOTER << FOOTER << "\xB2";
 }

@@ -27,6 +27,12 @@ public:
     bool operator!=(const String &) const;
 
     String &operator=(const char *);
+    String operator+(const char *);
+    String &operator+=(const char *);
+
+
+    String operator+(const char &);
+    String &operator+=(const char &);
     String &operator=(const Vector<char>&);
 
     bool operator==(const char *) const;

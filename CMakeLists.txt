@@ -18,4 +18,6 @@ add_executable(library "library.cpp"
                 "src/Draw.cpp"
                 "src/User.cpp"
                 "src/Book.cpp"
+                "src/UserDB.cpp"
+                "src/BookDB.cpp"
                 )

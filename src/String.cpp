@@ -43,9 +43,10 @@ String::String(const String &other)
 
 String::String(const char *other)
 {
-    data = new char(strlen(other) + 1);
+    data = new char[strlen(other) + 1];
     strncpy(data, other, strlen(other) + 1);
     size = strlen(other);
+    capacity = size + 1;
 }
 
 String::~String()
@@ -103,6 +104,32 @@ String String::operator+(const String &other)
 }
 
 String& String::operator+=(const String &other)
+{
+    return *this = *this + other;
+}
+
+String String::operator+(const char *other)
+{
+    String temp;
+    String temp2{other};
+    temp = *this + temp2;
+    return temp;
+}
+
+String String::operator+(const char &other)
+{
+    String temp;
+    temp = *this;
+    temp.add(other);
+    return temp;
+}
+
+String &String::operator+=(const char &other)
+{
+    return *this = *this + other;
+}
+
+String &String::operator+=(const char *other)
 {
     return *this = *this + other;
 }
@@ -179,10 +206,39 @@ std::ostream &operator<<(std::ostream& out, const String& string) {
 }
 
 std::istream &operator>>(std::istream& in, String& string) {
-    char *buffer = new char[1000];
-    in >> buffer;
-    string = String{buffer};
-    delete[] buffer;
+    // char *buffer = new char[1000];
+    // std::cin.getline(buffer, 1000);
+    // string = String{buffer};
+    // delete[] buffer;
+    // return in;
+
+    char ch;
+    char input[1000];
+    const char BACKSPACE = 8;
+    const char RETURN = 13;
+    int i = 0;
+
+    while (ch != RETURN)
+    {
+        if(i == 1000) { 
+            throw ("Buffer overflow!");
+        }
+        ch = getch();
+        if (ch != RETURN && ch != BACKSPACE)
+        {
+            std::cout << ch;
+            input[i] = ch;
+            i++;
+        }
+        if (ch == BACKSPACE && i > 0)
+        {
+            --i;
+            std::cout << "\b \b";
+            continue;
+        }
+    }
+    input[i] = '\0';
+    string = String{input};
     return in;
     }
 

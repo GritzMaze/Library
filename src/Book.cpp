@@ -73,6 +73,29 @@ void Book::setKeyWords(const Vector<String> keywords) {
     this->keywords = keywords;
 }
 
+void Book::setKeyWordsFromInput() {
+    String temp;
+    std::cin >> temp;
+    String keyword = "";
+    char ch;
+    const char SPACE = ' ';
+
+    int size = temp.getLength();
+    for(int i = 0; i < size; i++) {
+        ch = temp[i];
+        if(ch == SPACE) {
+            keywords.pushBack(keyword);
+            keyword = "";
+            
+            }
+            
+        keyword += ch;
+    }
+    if(keyword.getLength() > 0) {
+    keywords.pushBack(keyword);
+    }
+}
+
 void Book::setRating(const double& rating) {
     this->rating = rating;
 }
@@ -105,10 +128,21 @@ const size_t& Book::getID() const {
     return this->id;
 }
 
+const void Book::partlyPrintVertical(const int& y) const {
+    Draw::gotoxy(20,y);
+    std::cout << this->title;
+    Draw::gotoxy(50, y);
+    std::cout << this->author;
+    Draw::gotoxy(70, y);
+    std::cout << this->genre;
+    Draw::gotoxy(90, y);
+    std::cout << this->id;
+}
+
 const void Book::partlyPrint() const {
     std::cout << "Title: " << this->title << std::endl;
     std::cout << "Author: " << this->author << std::endl;
-    std::cout << "Genre: " << this->genre << std::endl;
+    std::cout << "Genre:  " << this->genre << std::endl;
     std::cout << "ID: " << this->id << std::endl;
 }
 
