@@ -69,7 +69,7 @@ void Book::setYOP(const size_t& yearOfPublish) {
     this->yearOfPublish = yearOfPublish;
 }
 
-void Book::setKeyWords(const Vector<String> keywords) {
+void Book::setKeyWords(const Vector<String>& keywords) {
     this->keywords = keywords;
 }
 
@@ -96,9 +96,42 @@ void Book::setKeyWordsFromInput() {
     }
 }
 
+void Book::setAuthorFromInput() {
+    String temp = InputHandle::inputWithLimit(20);
+    this->author = temp;
+}
+
+void Book::setTitleFromInput() {
+    String temp = InputHandle::inputWithLimit(30);
+    this->title = temp;
+}
+
+void Book::setGenreFromInput() {
+    String temp = InputHandle::inputWithLimit(15);
+    this->genre = temp;
+}
+
+void Book::setDescFromInput() {
+    String temp = InputHandle::inputWithLimit(150);
+    this->description = temp;
+}
+
+void Book::setYOPFromInput() {
+    int temp = 0;
+    std::cin >> temp;
+    this->yearOfPublish = temp;
+
+}
+
+void Book::setRatingFromInput() {
+    double temp = 0.0;
+    std::cin >> temp;
+    this->rating = temp;
+}
+
 void Book::setRating(const double& rating) {
     this->rating = rating;
-}
+} 
 
 const String& Book::getAuthor() const {
     return this->author;

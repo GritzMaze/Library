@@ -20,4 +20,5 @@ add_executable(library "library.cpp"
                 "src/Book.cpp"
                 "src/UserDB.cpp"
                 "src/BookDB.cpp"
+                "src/InputHandle.cpp"
                 )

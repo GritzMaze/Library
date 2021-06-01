@@ -154,3 +154,8 @@ void Draw::drawFooter(const int& y) {
     gotoxy(20, y);
     std::cout << FOOTER << FOOTER << "\xB2";
 }
+
+void Draw::pressAny(const int& y) {
+    gotoxy(10, y);
+    std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
+}

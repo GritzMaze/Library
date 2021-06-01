@@ -2,6 +2,7 @@
 #include "String.h"
 #include "Vector.h"
 #include "Draw.h"
+#include "InputHandle.h"
 
 class Book {
     private:
@@ -27,9 +28,15 @@ class Book {
     void setGenre(const String&);
     void setDesc(const String&);
     void setYOP(const size_t&);
-    void setKeyWords(const Vector<String> keywords);
-    void setKeyWordsFromInput();
+    void setKeyWords(const Vector<String>& keywords);
     void setRating(const double&);
+    void setAuthorFromInput();
+    void setTitleFromInput();
+    void setGenreFromInput();
+    void setDescFromInput();
+    void setYOPFromInput();
+    void setKeyWordsFromInput();
+    void setRatingFromInput();
 
     const String& getAuthor() const;
     const String& getTitle() const;

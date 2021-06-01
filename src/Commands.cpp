@@ -43,8 +43,7 @@ void Commands::choice()
     {
         if (!(this->isAdmin && this->isLogged))
         {
-            Draw::gotoxy(10, 23);
-            std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
+            Draw::pressAny(23);
             if (getch())
             {
                 mainmenu();
@@ -58,8 +57,7 @@ void Commands::choice()
     }
     default:
     {
-        Draw::gotoxy(10, 25);
-        std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
+        Draw::pressAny(25);
         if (getch())
             mainmenu();
         break;
@@ -96,7 +94,6 @@ void Commands::login()
 void Commands::addBooks() {
     system("cls");
     books.add();
-    Sleep(3000);
     mainmenu();
 }
 

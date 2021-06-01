@@ -1,6 +1,7 @@
 #pragma once
 #include "Database.h"
 #include "Draw.h"
+#include "InputHandle.h"
 
 
 class BookDB : public Database {
