@@ -3,7 +3,7 @@
 void InputHandle::errMsg(const String& err) {
    system("cls");
    Draw::gotoxy(15,7);
-   std::cout << "The Entry failed with the following: " << err;
+   std::cout << "The Following error ocurred: " << err;
    Draw::gotoxy(15,9);
    std::cout << "Press ANY key to continue...";
    getch();

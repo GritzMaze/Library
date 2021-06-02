@@ -1,7 +1,5 @@
 #include "../include/Commands.h"
 
-
-
 Commands::Commands()
 {
     this->isAdmin = false;
@@ -16,8 +14,7 @@ void Commands::choice()
         addBooks();
         break;
     case '2':
-        //deletebooks();
-        std::cout << "deleting book";
+        deleteBooks();
         break;
     case '3':
         //searchbooks();
@@ -75,7 +72,7 @@ void Commands::start()
 void Commands::mainmenu()
 {
     Draw::drawMenu(this->isLogged, this->isAdmin);
-    
+
     std::cout << "Enter your choice:";
     choice();
 }
@@ -91,15 +88,21 @@ void Commands::login()
     mainmenu();
 }
 
-void Commands::addBooks() {
+void Commands::addBooks()
+{
     system("cls");
     books.add();
     mainmenu();
 }
 
-void Commands::viewBooks() {
-    system("cls");
-    books.view();
-    Sleep(10000);
+void Commands::viewBooks()
+{
+    books.viewBooks();
+    mainmenu();
+}
+
+void Commands::deleteBooks()
+{
+    books.deleteBooks();
     mainmenu();
 }

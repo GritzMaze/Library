@@ -12,5 +12,5 @@ public:
 
     
     virtual void add() = 0;
-    virtual void remove(const Database*) = 0;
+    virtual bool remove(const size_t&) = 0;
 };

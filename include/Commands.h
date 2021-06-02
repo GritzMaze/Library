@@ -23,6 +23,7 @@ class Commands
             void close();
             void addBooks();
             void viewBooks();
+            void deleteBooks();
 
         public:
             Commands();

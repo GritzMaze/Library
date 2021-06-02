@@ -180,13 +180,15 @@ const void Book::partlyPrint() const {
 }
 
 const void Book::print() const {
-        std::cout << "Title: " << this->title << std::endl;
-        std::cout << "Author: " << this->author << std::endl;
-        std::cout << "Genre:  " << this->genre << std::endl;
-        std::cout << "Description: " << this->description<< std::endl;
-        std::cout << "Keywords: ";
-        this->keywords.print();
-        std::cout << "Year: " << this->yearOfPublish << std::endl;
-        std::cout << "Rating: " << this->rating << std::endl;
-        std::cout << "ID: " << this->id << std::endl;
+    Draw::drawHeader("BOOK INFO");
+    Draw::gotoxy(20, 5); std::cout << "Title: " << this->title;
+    Draw::gotoxy(20, 7); std::cout << "Author: " << this->author;
+    Draw::gotoxy(20, 9); std::cout << "Genre:  " << this->genre;
+    Draw::gotoxy(20, 11); std::cout << "Description: " << this->description;
+    Draw::gotoxy(20, 13); std::cout << "Keywords: ";
+    this->keywords.print();
+    Draw::gotoxy(20, 15); std::cout << "Year: " << this->yearOfPublish;
+    Draw::gotoxy(20, 17); std::cout << "Rating: " << this->rating;
+    Draw::gotoxy(20, 19); std::cout << "ID: " << this->id;
+    Draw::drawFooter(21);
 }

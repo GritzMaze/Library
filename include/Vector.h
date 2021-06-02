@@ -28,6 +28,7 @@ public:
     const T& back() const;
     const T& front() const;
     void popBack();
+    void remove(const size_t&);
     bool isExist(const T&) const;
 
 
@@ -169,6 +170,20 @@ template <typename T>
 void Vector<T>::popBack()
 {
     this->size--;
+}
+
+template<class T>
+void Vector<T>::remove(const size_t &position)
+{
+    if (position > size)
+    {
+        throw std::out_of_range("Out of range");
+    }
+    for (size_t i = position; i < size - 1; ++i)
+    {
+        arr[i] = arr[i + 1];
+    }
+    --size;
 }
 
 template <typename T>

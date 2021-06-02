@@ -10,7 +10,7 @@ class UserDB : public Database {
     ~UserDB() {};
 
     void add() override {}
-    void remove(const Database *) override {}
+    bool remove(const size_t&) override {return false;}
 
     void login(bool&, bool&);
 };
