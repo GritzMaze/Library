@@ -7,67 +7,36 @@
 
 void Draw::drawMenu(const bool &isLogged, const bool& isAdmin) {
     system("cls"); // Clear the console
-
     // Opening the Main Menu
-    gotoxy(20, 3);
-    std::cout << HEADER << " MAIN MENU " << HEADER;
-    gotoxy(20, 5);
-    std::cout << BODYLEFT << " COMMAND/ACTION   ";
-    std::cout << "\t\t INFO   ";
-    gotoxy(90, 5);
-    std::cout << BODYRIGHT;
-    gotoxy(20, 7);
-    std::cout << BODYLEFT << " 1. ADD BOOKS   ";
-    std::cout << "\t\t Add a book to the library.";
-    gotoxy(90, 7);
-    std::cout << BODYRIGHT;
-    gotoxy(20, 9);
-    std::cout << BODYLEFT << " 2. DELETE BOOKS  ";
-    std::cout << " \t\t Remove a book from the library.";
-    gotoxy(90, 9);
-    std::cout << BODYRIGHT;
-    gotoxy(20, 11);
-    std::cout << BODYLEFT << " 3. SEARCH BOOKS  ";
-    std::cout << "\t\t Search for a book in the library.";
-    gotoxy(90, 11);
-    std::cout << BODYRIGHT;
-    gotoxy(20, 13);
-    std::cout << BODYLEFT << " 4. EDIT BOOKS    ";
-    std::cout << "\t\t Edit a book in the library.";
-    gotoxy(90, 13);
-    std::cout << BODYRIGHT;
-    gotoxy(20, 15);
-    std::cout << BODYLEFT << " 5. VIEW BOOK LIST    ";
-    std::cout << "\t\t View the books in the library.";
-    gotoxy(90, 15);
-    std::cout << BODYRIGHT;
-    gotoxy(20, 17);
-    std::cout << BODYLEFT << " ";
-    (isLogged ? std::cout << "6. LOGOUT    \t\t\t Logout from the account." : std::cout << "6. LOGIN   \t\t\t Sign in the account.");
-    gotoxy(90, 17);
-    std::cout << BODYRIGHT;
-    gotoxy(20, 19);
-    std::cout << BODYLEFT << " 7. CLOSE APPLICATION";
-    std::cout << "\t\t Exits the application.";
-    gotoxy(90, 19);
-    std::cout << BODYRIGHT;
+    drawHeader("MAIN MENU");
+    drawMenuElem("COMMAND/ACTION   ", "INFO   ", 5);
+    drawMenuElem("1. ADD BOOKS  ", "Add a book to the library.", 7);
+    drawMenuElem("2. DELETE BOOKS  ", "Remove a book from the library.", 9);
+    drawMenuElem("3. SEARCH BOOKS  ", "Search for a book in the library.", 11);
+    drawMenuElem("4. EDIT BOOKS  ", "Edit a book in the library.", 13);
+    drawMenuElem("5. VIEW BOOK LIST  ", "Edit a book in the library.", 15);
+    (isLogged ? drawMenuElem("6. LOGOUT  ", "\t Logout from the account.", 17)
+              : drawMenuElem("6. LOGIN   ", " \t Sign in the account.", 17));
+    drawMenuElem("7. CLOSE APPLICATION", "Exits the application.", 19);
     if (isLogged && isAdmin)
     {
-        gotoxy(20, 21);
-        std::cout << BODYLEFT << " 8. ADMIN PANEL";
-        std::cout << "\t\t Managing all the users.";
-        gotoxy(90, 21);
-        std::cout << BODYRIGHT;
-        gotoxy(20, 23);
-        std::cout << FOOTER << FOOTER << "\xB2";
+        drawMenuElem("8. ADMIN PANEL ", " Managing all the users.", 21);
+        drawFooter(23);
         gotoxy(20, 25);
     }
     else
     {
-        gotoxy(20, 21);
-        std::cout << FOOTER << FOOTER << "\xB2";
+        drawFooter(21);
         gotoxy(20, 23);
     }
+}
+
+void Draw::drawMenuElem(const String& TITLE, const String& INFO = "", const int& y = 0) {
+    gotoxy(20, y);
+    std::cout << BODYLEFT << " " << TITLE;
+    std::cout << "\t\t " << INFO;
+    gotoxy(90, y);
+    std::cout << BODYRIGHT;
 }
 
 void Draw::drawSubmenu(const String& title1, const String& title2 = "", const String& title3 = "", const String& title4 = "") {
