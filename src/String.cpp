@@ -186,6 +186,26 @@ bool String::operator!=(const String &other) const
     return !(*this == other);
 }
 
+bool String::operator>(const String& other) const {
+    for(int i = 0; i < size; i++) {
+        if(data[i] != other[i]) {
+            if(data[i] > other[i]) return true;
+            else return false;
+        }
+    }
+    return true;
+}
+
+bool String::operator<(const String& other) const {
+    for(int i = 0; i < size; i++) {
+        if(data[i] != other[i]) {
+            if(data[i] < other[i]) return true;
+            else return false;
+        }
+    }
+    return true;
+}
+
 bool String ::operator!=(const char *other) const { return !(*this == other); }
 
 const char& String::operator[](const int &index) const

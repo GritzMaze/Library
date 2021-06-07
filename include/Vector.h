@@ -30,6 +30,7 @@ public:
     void popBack();
     void remove(const size_t&);
     bool isExist(const T&) const;
+    void swap(T&, T&);
 
 
     const T getElem(const size_t&) const;
@@ -127,14 +128,13 @@ Vector<T>& Vector<T>::operator=(const Vector<T> &other)
 }
 
 template <typename T>
-const T& Vector<T>::operator[](const int &index) const
+T &Vector<T>::operator[](int &index)
 {
-        return arr[index];
+    return arr[index];
 }
 
-
 template <typename T>
-T& Vector<T>::operator[](int &index)
+const T& Vector<T>::operator[](const int &index) const
 {
         return arr[index];
 }
@@ -206,6 +206,14 @@ bool Vector<T>::isExist(const T& elem) const {
         }
     }
     return false;
+}
+
+template <class T>
+void Vector<T>::swap(T& elem1, T& elem2) {
+    T temp = elem1;
+    elem1 = elem2;
+    elem2 = temp;
+
 }
 
 template <typename T>

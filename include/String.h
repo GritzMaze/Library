@@ -25,6 +25,8 @@ public:
     String operator+(const String &);
     bool operator==(const String &) const;
     bool operator!=(const String &) const;
+    bool operator<(const String &) const;
+    bool operator>(const String &) const;
 
     String &operator=(const char *);
     String operator+(const char *);

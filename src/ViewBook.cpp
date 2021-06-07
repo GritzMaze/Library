@@ -47,6 +47,5 @@ void BookDB::viewBooks()
             viewBooks();
         }
     }
-    viewBooks();
     return;
 }
