@@ -46,6 +46,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream&, const String&);
     friend std::istream &operator>>(std::istream&, String&);
+    String inputProtected();
 
     void add(const char &);
     void insertAt(const char &, int);

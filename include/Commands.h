@@ -18,12 +18,16 @@ class Commands
             BookDB books;
 
             void choice();
+            void admin_choice();
             void mainmenu();
             void login();
             void close();
             void addBooks();
             void viewBooks();
             void deleteBooks();
+            void searchBooks();
+            void sortBooks();
+            void adminPanel();
 
         public:
             Commands();

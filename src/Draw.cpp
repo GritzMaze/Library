@@ -13,14 +13,14 @@ void Draw::drawMenu(const bool &isLogged, const bool& isAdmin) {
     drawMenuElem("1. ADD BOOKS  ", "Add a book to the library.", 7);
     drawMenuElem("2. DELETE BOOKS  ", "Remove a book from the library.", 9);
     drawMenuElem("3. SEARCH BOOKS  ", "Search for a book in the library.", 11);
-    drawMenuElem("4. EDIT BOOKS  ", "Edit a book in the library.", 13);
-    drawMenuElem("5. VIEW BOOK LIST  ", "Edit a book in the library.", 15);
-    (isLogged ? drawMenuElem("6. LOGOUT  ", "\t Logout from the account.", 17)
-              : drawMenuElem("6. LOGIN   ", " \t Sign in the account.", 17));
+    drawMenuElem("4. SORT BOOKS  ", "Sort the books in the library.", 13);
+    drawMenuElem("5. VIEW BOOK LIST  ", "View the books in the library.", 15);
+    (isLogged ? drawMenuElem("6. LOGOUT  ", "Logout from the account.", 17)
+              : drawMenuElem("6. LOGIN   ", "Sign in the account.", 17));
     drawMenuElem("7. CLOSE APPLICATION", "Exits the application.", 19);
     if (isLogged && isAdmin)
     {
-        drawMenuElem("8. ADMIN PANEL ", " Managing all the users.", 21);
+        drawMenuElem("8. ADMIN PANEL ", "Managing all the users.", 21);
         drawFooter(23);
         gotoxy(20, 25);
     }
@@ -34,7 +34,8 @@ void Draw::drawMenu(const bool &isLogged, const bool& isAdmin) {
 void Draw::drawMenuElem(const String& TITLE, const String& INFO = "", const int& y = 0) {
     gotoxy(20, y);
     std::cout << BODYLEFT << " " << TITLE;
-    std::cout << "\t\t " << INFO;
+    gotoxy(57, y);
+    std::cout << INFO;
     gotoxy(90, y);
     std::cout << BODYRIGHT;
 }
@@ -49,6 +50,20 @@ void Draw::drawSubmenu(const String& title1, const String& title2 = "", const St
     gotoxy(90,5);
     std::cout << title4;
     // gotoxy(90, 5);
+}
+
+void Draw::drawAdminMenu() {
+    system("cls");
+    drawHeader("ADMIN MENU");
+    drawMenuElem("COMMAND/ACTION   ", "INFO   ", 5);
+    drawMenuElem("1. ADD USER  ", "Add a user.", 7);
+    drawMenuElem("2. DELETE USER  ", "Delete a user.", 9);
+    drawMenuElem("3. VIEW USERS  ", "View a list of users.", 11);
+    drawMenuElem("4. OPEN DATABASE  ", "Open a database.", 13);
+    drawMenuElem("5. SAVE DATABASE  ", "Save the database.", 15);
+    drawMenuElem("6. MAIN MENU  ", "Go to the main menu.", 17);
+    drawFooter(19);
+    gotoxy(20, 21);
 }
 
 void Draw::gotoxy(const int& x,const int& y)

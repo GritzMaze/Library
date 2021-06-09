@@ -47,6 +47,9 @@ class Book {
     const double& getRating() const;
     const size_t& getID() const;
 
+    const void save(const String&);
+    const void open(const String&);
+
     const void partlyPrint() const;
     const void partlyPrintVertical(const int&) const;
     const void print() const;

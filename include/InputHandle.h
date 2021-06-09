@@ -11,4 +11,5 @@ class InputHandle {
     public:
     static void errMsg(const String&);
     static String inputWithLimit(const size_t&);
+    static String inputValue();
 };

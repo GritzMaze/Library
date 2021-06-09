@@ -42,6 +42,5 @@ void BookDB::deleteBooks()
             deleteBooks();
         }
     }
-    deleteBooks();
     return;
 }

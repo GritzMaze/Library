@@ -4,6 +4,7 @@
 #include "InputHandle.h"
 #include <ios>              //used to get stream size
 #include <limits>           //used to get numeric limits
+#include <fstream>
 
 class BookDB : public Database {
     private:
@@ -45,4 +46,7 @@ class BookDB : public Database {
     void search();
     
     void sortBooks();
+
+    void open(const String&);
+    void save(const String&);
 };

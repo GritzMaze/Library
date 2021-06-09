@@ -2,7 +2,7 @@
 
 void BookDB::add()
 {
-    Book *book = new Book();
+    Book *book = new Book;
     String temp;
     int year = 0;
     double rating = 0.0;
@@ -48,7 +48,6 @@ void BookDB::add()
         add();
     }
     book->setRating(rating);
-
     books.pushBack(book);
     system("cls");
     Draw::gotoxy(15, 7);

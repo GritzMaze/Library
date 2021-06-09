@@ -17,19 +17,16 @@ void Commands::choice()
         deleteBooks();
         break;
     case '3':
-        //searchbooks();
-        std::cout << "searching for book";
+        searchBooks();
         break;
     case '4':
-        //editbooks();
-        std::cout << "Editing book";
+        sortBooks();
         break;
     case '5':
         viewBooks();
         break;
     case '6':
         login();
-        //std::cout << "Login book";
         break;
     case '7':
     {
@@ -47,9 +44,7 @@ void Commands::choice()
             }
         }
         else
-            std::cout << "Admun panel";
-        //else admin_panel();
-        //mainmenu();
+        adminPanel();
         break;
     }
     default:
@@ -57,6 +52,41 @@ void Commands::choice()
         Draw::pressAny(25);
         if (getch())
             mainmenu();
+        break;
+    }
+    }
+}
+
+void Commands::admin_choice()
+{
+    switch (getch())
+    {
+    case '1':
+        users.addUser();
+        adminPanel();
+        break;
+    case '2':
+        users.deleteUser();
+        adminPanel();
+        break;
+    case '3':
+        users.viewUsers();
+        adminPanel();
+        break;
+    case '4':
+        // openDB;
+        break;
+    case '5':
+        // saveDB;
+        break;
+    case '6':
+        mainmenu();
+        break;
+    default:
+    {
+        Draw::pressAny(25);
+        if (getch())
+            adminPanel();
         break;
     }
     }
@@ -84,7 +114,7 @@ void Commands::close()
 
 void Commands::login()
 {
-    users.login(this->isLogged, this->isAdmin);
+    users.login(this->isAdmin, this->isLogged);
     mainmenu();
 }
 
@@ -105,4 +135,21 @@ void Commands::deleteBooks()
 {
     books.deleteBooks();
     mainmenu();
+}
+
+void Commands::searchBooks() {
+    books.search();
+    mainmenu();
+}
+
+void Commands::sortBooks() {
+    books.sortBooks();
+    mainmenu();
+}
+
+void Commands::adminPanel() {
+    Draw::drawAdminMenu();
+    std::cout << "Enter your choice:";
+    admin_choice();
+    adminPanel();
 }

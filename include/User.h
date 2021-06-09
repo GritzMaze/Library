@@ -1,12 +1,15 @@
 #pragma once
 #include <iostream>
 #include "String.h"
+#include "Draw.h"
 
 class User {
     private:
         String username;
         String password;
         bool admin;
+        size_t id;
+        static size_t _id;
 
         void copy(const User&);
 
@@ -17,8 +20,10 @@ class User {
         User(const User&);
 
     User& operator=(const User&);
+    bool operator==(User*);
     bool operator==(const User&) const;
     bool operator!=(const User&) const;
+    bool operator!=(User*);
 
     void setUsername(const String&);
     void setPass(const String&);
@@ -26,7 +31,11 @@ class User {
 
     const String getUsername() const;
     const String getPassword() const;
+    const size_t getID() const;
     bool isAdmin() const;
 
     friend std::ostream &operator<<(std::ostream &, const User &);
+
+    void print() const;
+    const void printVertical(const int&) const;
 };

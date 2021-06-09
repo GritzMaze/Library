@@ -11,8 +11,9 @@ void String::erase()
 {
     this->size = 0;
     this->capacity = 0;
-    if(data != nullptr) {
-    delete[] this->data;
+    if (data != nullptr)
+    {
+        delete[] this->data;
     }
 }
 
@@ -32,7 +33,7 @@ void String::resize()
     {
         biggerString[i] = this->data[i];
     }
-    delete [] data;
+    delete[] data;
     this->data = biggerString;
 }
 
@@ -51,14 +52,17 @@ String::String(const char *other)
 
 String::~String()
 {
-    if(data != nullptr) {
-    erase();
+    if (data != nullptr)
+    {
+        erase();
     }
 }
 
-String& String::operator=(const String &other) {
-    if(this != &other && other.data != nullptr) {
-    this->copy(other);
+String &String::operator=(const String &other)
+{
+    if (this != &other && other.data != nullptr)
+    {
+        this->copy(other);
     }
     return *this;
 }
@@ -83,12 +87,13 @@ String &String ::operator=(const Vector<char> &other)
     {
         erase();
     }
-    for(int i = 0; i < other.getSize(); i++) {
+    for (int i = 0; i < other.getSize(); i++)
+    {
         temp[i] = other[i];
     }
     data = temp;
     size = strlen(data);
-    delete [] temp;
+    delete[] temp;
     return *this;
 }
 
@@ -103,7 +108,7 @@ String String::operator+(const String &other)
     return temp;
 }
 
-String& String::operator+=(const String &other)
+String &String::operator+=(const String &other)
 {
     return *this = *this + other;
 }
@@ -136,16 +141,18 @@ String &String::operator+=(const char *other)
 
 bool String::operator==(const String &other) const
 {
-    if (this->size != other.size){
+    if (this->size != other.size)
+    {
         return false;
     }
-    else {
-    for (int i = 0; i < this->size; i++)
+    else
     {
-        if (this->data[i] != other.data[i])
-            return false;
-    }
-    return true;
+        for (int i = 0; i < this->size; i++)
+        {
+            if (this->data[i] != other.data[i])
+                return false;
+        }
+        return true;
     }
 }
 
@@ -181,26 +188,36 @@ bool String ::operator==(const char &other) const
     return true;
 }
 
-bool String::operator!=(const String &other) const 
+bool String::operator!=(const String &other) const
 {
     return !(*this == other);
 }
 
-bool String::operator>(const String& other) const {
-    for(int i = 0; i < size; i++) {
-        if(data[i] != other[i]) {
-            if(data[i] > other[i]) return true;
-            else return false;
+bool String::operator>(const String &other) const
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (data[i] != other[i])
+        {
+            if (data[i] > other[i])
+                return true;
+            else
+                return false;
         }
     }
     return true;
 }
 
-bool String::operator<(const String& other) const {
-    for(int i = 0; i < size; i++) {
-        if(data[i] != other[i]) {
-            if(data[i] < other[i]) return true;
-            else return false;
+bool String::operator<(const String &other) const
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (data[i] != other[i])
+        {
+            if (data[i] < other[i])
+                return true;
+            else
+                return false;
         }
     }
     return true;
@@ -208,24 +225,26 @@ bool String::operator<(const String& other) const {
 
 bool String ::operator!=(const char *other) const { return !(*this == other); }
 
-const char& String::operator[](const int &index) const
+const char &String::operator[](const int &index) const
 {
     return this->data[index];
 }
 
-char& String::operator[](int &index)
+char &String::operator[](int &index)
 {
     return this->data[index];
 }
 
-std::ostream &operator<<(std::ostream& out, const String& string) {
-    
-        out << string.data;
+std::ostream &operator<<(std::ostream &out, const String &string)
+{
+
+    out << string.data;
 
     return out;
 }
 
-std::istream &operator>>(std::istream& in, String& string) {
+std::istream &operator>>(std::istream &in, String &string)
+{
     // char *buffer = new char[1000];
     // std::cin.getline(buffer, 1000);
     // string = String{buffer};
@@ -240,8 +259,9 @@ std::istream &operator>>(std::istream& in, String& string) {
 
     while (ch != RETURN)
     {
-        if(i == 1000) { 
-            throw ("Buffer overflow!");
+        if (i == 1000)
+        {
+            throw("Buffer overflow!");
         }
         ch = getch();
         if (ch != RETURN && ch != BACKSPACE)
@@ -260,9 +280,38 @@ std::istream &operator>>(std::istream& in, String& string) {
     input[i] = '\0';
     string = String{input};
     return in;
-    }
+}
 
-    void String::add(const char &symb)
+String String::inputProtected()
+{
+    String temp;
+    char ch;
+    char str[30];
+    const char BACKSPACE = 8;
+    const char RETURN = 13;
+    int i = 0;
+    while (ch != RETURN)
+    {
+        ch = getch();
+        if (ch != RETURN && ch != BACKSPACE && i < 30)
+        {
+            putch('*');
+            str[i] = ch;
+            i++;
+        }
+        if (ch == BACKSPACE && i > 0)
+        {
+            --i;
+            std::cout << "\b \b";
+            continue;
+        }
+    }
+    str[i] = '\0';
+    temp = str;
+    return temp;
+}
+
+void String::add(const char &symb)
 {
     if (capacity + 1 <= this->size)
         this->resize();
@@ -285,7 +334,7 @@ void String::insertAt(const char &symb, int index)
     this->data[index] = symb;
 }
 
-void String::removeAt(int& index)
+void String::removeAt(int &index)
 {
     if (size <= 0)
         return;
@@ -335,7 +384,7 @@ void String::trimStart(int num)
     }
 }
 
-void String::trimEnd(int& num)
+void String::trimEnd(int &num)
 {
     if (size > 0)
     {
@@ -361,8 +410,9 @@ const int String::getCapacity() const
 
 void String::setString(const char *other)
 {
-    if(this->data != nullptr) {
-    erase();
+    if (this->data != nullptr)
+    {
+        erase();
     }
     this->size = strlen(other);
     this->capacity = this->size + 1;

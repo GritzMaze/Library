@@ -30,6 +30,7 @@ public:
     void popBack();
     void remove(const size_t&);
     bool isExist(const T&) const;
+    bool isExistUser(const T&) const;
     void swap(T&, T&);
 
 
@@ -196,6 +197,19 @@ template <typename T>
 const T &Vector<T>::back() const
 {
     return arr[size - 1];
+}
+
+template <class T>
+bool Vector<T>::isExistUser(const T& elem) const
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        if (elem->operator==(arr[i]))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 template <class T>

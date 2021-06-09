@@ -10,6 +10,15 @@ void InputHandle::errMsg(const String& err) {
    system("cls");
 }
 
+String InputHandle::inputValue() {
+    system("cls");
+    String temp;
+    Draw::gotoxy(15, 7);
+    std::cout << "Enter text: ";
+    std::cin >> temp;
+    return temp;
+}
+
 
 String InputHandle::inputWithLimit(const size_t& limit) {
     char ch;

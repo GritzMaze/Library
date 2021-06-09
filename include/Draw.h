@@ -14,6 +14,7 @@ class Draw {
     static void drawFooter(const int&);
     static void drawSubmenu(const String&, const String&, const String&, const String&);
     static void drawMenuElem(const String&, const String&, const int& y);
+    static void drawAdminMenu();
     static void pressAny(const int&);
     static void gotoxy(const int& x, const int& y);
 
