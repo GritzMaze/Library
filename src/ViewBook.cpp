@@ -35,8 +35,9 @@ void BookDB::viewBooks()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         viewBooks();
     }
-    if (id == 0)
-        return;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    
+    if (id == 0) return;
     if (this->printByID(id))
     {
         Draw::gotoxy(20, 23);

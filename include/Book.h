@@ -3,6 +3,7 @@
 #include "Vector.h"
 #include "Draw.h"
 #include "InputHandle.h"
+#include <fstream>
 
 class Book {
     private:
@@ -28,7 +29,7 @@ class Book {
     void setGenre(const String&);
     void setDesc(const String&);
     void setYOP(const size_t&);
-    void setKeyWords(const Vector<String>& keywords);
+    void setKeyWords(const Vector<String>&);
     void setRating(const double&);
     void setAuthorFromInput();
     void setTitleFromInput();
@@ -36,6 +37,7 @@ class Book {
     void setDescFromInput();
     void setYOPFromInput();
     void setKeyWordsFromInput();
+    void setKeyWordsFromString(const String&);
     void setRatingFromInput();
 
     const String& getAuthor() const;
@@ -47,8 +49,8 @@ class Book {
     const double& getRating() const;
     const size_t& getID() const;
 
-    const void save(const String&);
-    const void open(const String&);
+    const void save(std::ofstream&) const; 
+    const void open(const std::fstream&);
 
     const void partlyPrint() const;
     const void partlyPrintVertical(const int&) const;

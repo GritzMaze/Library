@@ -74,10 +74,12 @@ void Commands::admin_choice()
         adminPanel();
         break;
     case '4':
-        // openDB;
+        openDB();
+        adminPanel();
         break;
     case '5':
-        // saveDB;
+        saveDB();
+        adminPanel();
         break;
     case '6':
         mainmenu();

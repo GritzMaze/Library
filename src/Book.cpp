@@ -76,23 +76,31 @@ void Book::setKeyWords(const Vector<String>& keywords) {
 void Book::setKeyWordsFromInput() {
     String temp;
     std::cin >> temp;
+   setKeyWordsFromString(temp);
+}
+
+void Book::setKeyWordsFromString(const String& tags) {
     String keyword = "";
     char ch;
     const char SPACE = ' ';
 
-    int size = temp.getLength();
-    for(int i = 0; i < size; i++) {
-        ch = temp[i];
-        if(ch == SPACE) {
+    int size = tags.getLength();
+    for (int i = 0; i < size; i++)
+    {
+        ch = tags[i];
+        if (ch == SPACE)
+        {
+            if(keyword.getLength() > 0){
             keywords.pushBack(keyword);
-            keyword = "";
-            
             }
-            
+            keyword = "";
+        }
+
         keyword += ch;
     }
-    if(keyword.getLength() > 0) {
-    keywords.pushBack(keyword);
+    if (keyword.getLength() > 0)
+    {
+        keywords.pushBack(keyword);
     }
 }
 
@@ -159,6 +167,19 @@ const double& Book::getRating() const {
 
 const size_t& Book::getID() const {
     return this->id;
+}
+
+const void Book::save(std::ofstream& file) const {
+    file << this->title << "\n";
+    file << this->author << "\n";
+    file << this->genre << "\n";
+    file << this->description << "\n";
+    for(int i = 0; i < this->keywords.getSize();++i) {
+        file << this->keywords[i] << " ";
+    }
+    file << "\n";
+    file << this->yearOfPublish << "\n";
+    file << this->rating << "\n";
 }
 
 const void Book::partlyPrintVertical(const int& y) const {

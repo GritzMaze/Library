@@ -32,10 +32,12 @@ void BookDB::add()
         delete book;
         add();
     }
+    std::cin.ignore();
     book->setYOP(year);
     Draw::gotoxy(20, 15);
     std::cout << "Keywords(with spaces): ";
-    book->setKeyWordsFromInput();
+    std::cin >> temp;
+    book->setKeyWordsFromString(temp);
     Draw::gotoxy(20, 17);
     std::cout << "Rating(1-5): ";
     std::cin >> rating;
@@ -47,6 +49,7 @@ void BookDB::add()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         add();
     }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     book->setRating(rating);
     books.pushBack(book);
     system("cls");

@@ -71,7 +71,7 @@ bool User::operator!=(const User &other) const
 
 bool User::operator!=(User *other)
 {
-    return (!(*this == other));
+    return (!(this == other));
 }
 
 const String User::getUsername() const

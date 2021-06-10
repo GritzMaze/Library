@@ -34,8 +34,9 @@ void UserDB::viewUsers()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         viewUsers();
     }
-    if (choice == 0)
-        return;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+     
+     if (choice == 0) return;
 
     return;
 }

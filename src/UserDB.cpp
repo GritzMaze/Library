@@ -1,8 +1,8 @@
 #include "../include/UserDB.h"
+User *defaultUser = new User("admin", "admin", true);
 
 UserDB::UserDB()
 {
-    User *defaultUser = new User("admin", "admin", true);
     users.pushBack(defaultUser);
 }
 

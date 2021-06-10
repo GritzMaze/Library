@@ -245,40 +245,11 @@ std::ostream &operator<<(std::ostream &out, const String &string)
 
 std::istream &operator>>(std::istream &in, String &string)
 {
-    // char *buffer = new char[1000];
-    // std::cin.getline(buffer, 1000);
-    // string = String{buffer};
-    // delete[] buffer;
-    // return in;
-
-    char ch;
-    char input[1000];
-    const char BACKSPACE = 8;
-    const char RETURN = 13;
-    int i = 0;
-
-    while (ch != RETURN)
-    {
-        if (i == 1000)
-        {
-            throw("Buffer overflow!");
-        }
-        ch = getch();
-        if (ch != RETURN && ch != BACKSPACE)
-        {
-            std::cout << ch;
-            input[i] = ch;
-            i++;
-        }
-        if (ch == BACKSPACE && i > 0)
-        {
-            --i;
-            std::cout << "\b \b";
-            continue;
-        }
-    }
-    input[i] = '\0';
-    string = String{input};
+    char *buffer = new char[1000];
+    in.getline(buffer, 1000);
+    in.clear();
+    string = String{buffer};
+    delete[] buffer;
     return in;
 }
 

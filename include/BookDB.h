@@ -5,6 +5,10 @@
 #include <ios>              //used to get stream size
 #include <limits>           //used to get numeric limits
 #include <fstream>
+#include <cstdlib>
+#include <cstdio>
+#include <filesystem>
+#include <unistd.h>
 
 class BookDB : public Database {
     private:
@@ -48,5 +52,7 @@ class BookDB : public Database {
     void sortBooks();
 
     void open(const String&);
+    void openDB();    
+
     void save(const String&);
 };

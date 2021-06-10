@@ -30,4 +30,7 @@ add_executable(library "library.cpp"
                 "src/SearchBook.cpp"
                 "src/SortBooks.cpp"
                 "src/InputHandle.cpp"
+                "src/OpenDB.cpp"
+                "src/SaveDB.cpp"
+                "src/BookFiles.cpp"
                 )

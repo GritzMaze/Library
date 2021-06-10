@@ -31,14 +31,14 @@ void UserDB::add()
             user->setAdmin(false);
         }
         else user->setAdmin(false);
-
-    users.pushBack(user);
-    system("cls");
-    Draw::gotoxy(15, 7);
-    std::cout << "Entry Successful!";
-    Draw::gotoxy(15, 9);
-    std::cout << "Press ANY key to continue...";
-    getch();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        users.pushBack(user);
+        system("cls");
+        Draw::gotoxy(15, 7);
+        std::cout << "Entry Successful!";
+        Draw::gotoxy(15, 9);
+        std::cout << "Press ANY key to continue...";
+        getch();
 }
 
 void UserDB::addUser() {

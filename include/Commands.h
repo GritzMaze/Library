@@ -28,6 +28,8 @@ class Commands
             void searchBooks();
             void sortBooks();
             void adminPanel();
+            void openDB();
+            void saveDB();
 
         public:
             Commands();
