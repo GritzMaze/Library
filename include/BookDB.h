@@ -51,8 +51,6 @@ class BookDB : public Database {
     
     void sortBooks();
 
-    void open(const String&);
-    void openDB();    
-
+    void open(const String&);  
     void save(const String&);
 };

@@ -10,4 +10,5 @@ void Commands::openDB() {
     std::cout << "Enter a file to open (Just a name, not an extension): ";
     std::cin >> text;
     books.open(text);
+    users.open(text);
 }

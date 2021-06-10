@@ -10,5 +10,7 @@ void Commands::saveDB()
     Draw::gotoxy(20, 10);
     std::cout << "Enter a name or a path: ";
     std::cin >> filename;
+    users.save(filename);
     books.save(filename);
+
 }

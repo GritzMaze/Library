@@ -2,6 +2,7 @@
 #include <iostream>
 #include "String.h"
 #include "Draw.h"
+#include <fstream>
 
 class User {
     private:
@@ -38,4 +39,7 @@ class User {
 
     void print() const;
     const void printVertical(const int&) const;
+
+    const void save(std::ofstream&) const;
+    void load(std::ifstream&);
 };

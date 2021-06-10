@@ -3,6 +3,13 @@
 #include "InputHandle.h"
 #include <ios>    //used to get stream size
 #include <limits> //used to get numeric limits
+#include <fstream>
+#include <cstdlib>
+#include <cstdio>
+#include <filesystem>
+#include <unistd.h>
+#include <string>
+#include <iostream>
 
 class UserDB : public Database {
     private:
@@ -22,4 +29,7 @@ class UserDB : public Database {
     void viewUsers();
 
     void login(bool&, bool&);
+
+    void open(const String &);
+    void save(const String &);
 };
