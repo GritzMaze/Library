@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 include_directories("/include"
-                "/src")
+                "/src"
+                "/doctest")
 
 add_executable(library "library.cpp"
                 "src/Commands.cpp"
@@ -35,3 +36,18 @@ add_executable(library "library.cpp"
                 "src/BookFiles.cpp"
                 "src/UserFiles.cpp"
                 )
+
+add_executable(test "tests/main.cpp"
+                "doctest/doctest.h") 
+
+add_executable(string "Tests/string.cpp"
+                "include/String.h"
+                "src/String.cpp"
+                "doctest/doctest.h")
+
+#add_executable(vector "Tests/vector.cpp"
+ #               "include/Vector.h"
+  #              "include/String.h"
+   #             "src/String.cpp"
+    #            "doctest/doctest.h")
+#

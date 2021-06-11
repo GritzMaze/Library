@@ -1,10 +1,13 @@
 #include "../include/String.h"
 
-void String::copy(const String &other)
+void String::copy(const char* other)
 {
-    setString(other.data);
-    setSize(other.size);
-    setCapacity(other.capacity);
+    size = strlen(other);
+    capacity = size + 1;
+    char *buffer = nullptr;
+    buffer = create(size + 1);
+    strncpy(buffer, other, size + 1);
+    data = buffer;
 }
 
 void String::erase()
@@ -41,8 +44,17 @@ String::String()
 
 void String::resize()
 {
+    char* biggerString = nullptr;
     this->capacity *= 2;
-    char *biggerString = new char[this->capacity];
+    try
+    {
+        biggerString = new char[this->capacity];
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Resize String: " << e.what() << '\n';
+    }
+
     for (int i = 0; i < size; i++)
     {
         biggerString[i] = this->data[i];
@@ -53,12 +65,17 @@ void String::resize()
 
 String::String(const String &other)
 {
-    copy(other);
+    copy(other.data);
 }
 
 String::String(const char *other)
 {
+    try {
     data = new char[strlen(other) + 1];
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << '\n';
+    }
     strncpy(data, other, strlen(other) + 1);
     size = strlen(other);
     capacity = size + 1;
@@ -76,14 +93,21 @@ String &String::operator=(const String &other)
 {
     if (this != &other && other.data != nullptr)
     {
-        this->copy(other);
+        this->copy(other.data);
     }
     return *this;
 }
 
 String &String ::operator=(const char *other)
 {
-    char *temp = new char[strlen(other) + 1];
+    char *temp = nullptr;
+    try {
+    temp = new char[strlen(other) + 1];
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     strncpy(temp, other, strlen(other) + 1);
     if (data != nullptr)
     {
@@ -96,7 +120,15 @@ String &String ::operator=(const char *other)
 
 String &String ::operator=(const Vector<char> &other)
 {
-    char *temp = new char[other.getSize()];
+    char *temp = nullptr;
+    try
+    {
+        temp = new char[other.getSize() + 1];
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     if (data != nullptr)
     {
         erase();
@@ -115,6 +147,7 @@ String String::operator+(const String &other) const
 {
     String result;
     result.size += this->size + other.size;
+    result.capacity = result.size + 1;
     char *buffer = nullptr;
     buffer = create(result.size);
     for (size_t i = 0; i < size; ++i)
@@ -128,6 +161,12 @@ String String::operator+(const String &other) const
     buffer[result.size] = '\0';
     result.data = buffer;
     return result;
+    // String temp;
+    // temp = *this;
+    // for(int i = 0; i < other.size; ++i) {
+    //     temp.add(other.data[i]);
+    // }
+    // return temp;
 }
 
 String &String::operator+=(const String &other)
@@ -140,6 +179,7 @@ String String::operator+(const char *other) const
 {
     String result;
     result.size += this->size + strlen(other);
+    result.capacity = result.size + 1;
     char *buffer = nullptr;
     buffer = create(result.size);
     for (size_t i = 0; i < size; ++i)
@@ -153,6 +193,10 @@ String String::operator+(const char *other) const
     buffer[result.size] = '\0';
     result.data = buffer;
     return result;
+    // String temp;
+    // String temp2{other};
+    // temp = *this + temp2;
+    // return temp;
 }
 
 String String::operator+(const char &other) const
@@ -263,11 +307,19 @@ bool String ::operator!=(const char *other) const { return !(*this == other); }
 
 const char &String::operator[](const int &index) const
 {
+    if (index > size)
+    {
+        throw std::out_of_range("index out of bound");
+    }
     return this->data[index];
 }
 
 char &String::operator[](int &index)
 {
+    if (index > size)
+    {
+        throw std::out_of_range("index out of bound");
+    }
     return this->data[index];
 }
 
@@ -281,7 +333,14 @@ std::ostream &operator<<(std::ostream &out, const String &string)
 
 std::istream &operator>>(std::istream &in, String &string)
 {
-    char *buffer = new char[1000];
+    char *buffer = nullptr;
+    try {
+        buffer = new char[1000];
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     in.getline(buffer, 1000);
     in.clear();
     string = String{buffer};
@@ -331,22 +390,27 @@ void String::insertAt(const char &symb, int index)
 {
     if (capacity + 1 <= this->size)
         this->resize();
-    if (index > this->size)
-        index = this->size;
-    int i = this->size;
-    for (; i > index; i--)
+    ++size;
+    for (size_t i = size; i > index; --i)
     {
-        this->data[i] = this->data[i - 1];
+        data[i] = data[i - 1];
     }
-    this->data[index] = symb;
+    data[index] = symb;
 }
 
 void String::removeAt(int &index)
 {
-    if (size <= 0)
-        return;
-    if (index > this->size)
-        index = size;
+    try
+    {
+        if (index > size)
+        {
+            throw std::out_of_range("index out of bound");
+        }
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     int i = index;
     for (; i < this->size; i++)
     {
@@ -378,8 +442,10 @@ void String::trimEnd()
 
 void String::trimStart(int num)
 {
-    if (size <= 0)
-        return;
+        if (num > size)
+        {
+            throw std::out_of_range("index out of bound");
+        }
     for (int k = num; k > 0; k--)
     {
         for (int i = num; i < this->size; i++)
@@ -400,9 +466,12 @@ void String::trimEnd(int &num)
     }
 }
 
-bool String::findElem(const char& elem) const {
-    for(int i = 0; i < size; i++) {
-        if(data[i] == elem) return true;
+bool String::findElem(const char &elem) const
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (data[i] == elem)
+            return true;
     }
     return false;
 }
@@ -430,7 +499,14 @@ void String::setString(const char *other)
     }
     this->size = strlen(other);
     this->capacity = this->size + 1;
+    try
+    {
     this->data = new char[size];
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     strncpy(this->data, other, strlen(other) + 1);
 }
 

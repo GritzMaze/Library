@@ -117,10 +117,10 @@ void BookDB::open(const String &filename)
         file.getline(buffer, 1000, '\n');
         book->setDesc(buffer);
         file.getline(buffer, 1000, '\n');
+        book->setKeyWordsFromString(buffer);
+        file.getline(buffer, 1000, '\n');
         year = toInt(buffer);
         book->setYOP(year);
-        file.getline(buffer, 1000, '\n');
-        book->setKeyWordsFromString(buffer);
         file.getline(buffer, 1000, '\n');
         rating = toDouble(buffer);
         book->setRating(rating);

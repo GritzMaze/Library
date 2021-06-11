@@ -11,7 +11,7 @@ private:
     int size;
     int capacity;
 
-    void copy(const String &);
+    void copy(const char*);
     void erase();
     void resize();
     char* create(const size_t&) const;
