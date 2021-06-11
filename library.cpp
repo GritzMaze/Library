@@ -10,15 +10,17 @@ int main()
 {
 
       Commands app;
-      app.start();
-    // String tag1 = "tag1";
-    // String tag2 = "tag2";
-    // Vector<String> tags;
-    // tags.pushBack(tag1);
-    // tags.pushBack(tag2);
+     app.start();
+    //  String tag1 = "tag1";
+    //  String tag2 = "tag2";
+    //  Vector<String> tags;
+    //  tags.pushBack(tag1);
+    //  tags.pushBack(tag2);
 
-    // Book book("Game of Thrones", "Az sam avtorat", "fantyasy", "malko opisanie", 2013, tags, 2.5);
-    // Book book2("Game of Thrones2", "Az sam avtorat2", "fantyas2y", "malk2o opisanie", 20123, tags, 2.35);
+    //  Book book("Game of Thrones", "Az sam avtorat", "fantyasy", "malko opisanie", 2013, tags, 2.5);
+    //  Book book2("Game of Thrones2", "Az sam avtorat2", "fantyas2y", "malk2o opisanie", 20123, tags, 2.35);
+    //  system("cls");
+    //  book.print();
     // BookDB books;
     // books.add();
     // //books.add();

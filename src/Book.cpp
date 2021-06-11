@@ -90,13 +90,14 @@ void Book::setKeyWordsFromString(const String& tags) {
         ch = tags[i];
         if (ch == SPACE)
         {
-            if(keyword.getLength() > 0){
+            if(keyword.getLength() > 1){
             keywords.pushBack(keyword);
             }
             keyword = "";
+        } 
+        else {
+            keyword += ch;
         }
-
-        keyword += ch;
     }
     if (keyword.getLength() > 0)
     {
@@ -179,8 +180,9 @@ const void Book::save(std::ofstream& file) const {
     }
     file << "\n";
     file << this->yearOfPublish << "\n";
-    file << this->rating << "\n";
+    file << this->rating;
 }
+
 
 const void Book::partlyPrintVertical(const int& y) const {
     Draw::gotoxy(20,y);

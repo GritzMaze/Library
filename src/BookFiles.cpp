@@ -82,12 +82,14 @@ void BookDB::open(const String &filename)
     if (isEmptyFile)
     {
         InputHandle::errMsg("File is empty!");
+        file.close();
         return;
     }
 
     if (!file)
     {
         InputHandle::errMsg("File was not open!");
+        file.close();
         return;
     }
 
@@ -96,23 +98,27 @@ void BookDB::open(const String &filename)
     double rating = 0.0;
     char *buffer = new char[1000];
 
-    while (!file.fail())
+    while (!file.eof())
     {
         Book *book = new Book;
-        file.getline(buffer, '\n');
+        file.clear();
+        file.getline(buffer, 1000, '\n');
+        InputHandle::errMsg(buffer);
         book->setTitle(buffer);
-        file.getline(buffer, '\n');
+        file.getline(buffer, 1000, '\n');
         book->setAuthor(buffer);
-        file.getline(buffer, '\n');
+        file.getline(buffer, 1000, '\n');
         book->setGenre(buffer);
-        file.getline(buffer, '\n');
+        file.getline(buffer, 1000, '\n');
         book->setDesc(buffer);
-        file.getline(buffer, '\n');
-        book->setKeyWordsFromString(buffer);
-        file.getline(buffer, '\n');
+        InputHandle::errMsg(buffer);
+        file.getline(buffer, 1000, '\n');
+        InputHandle::errMsg(buffer);
         year = toInt(buffer);
         book->setYOP(year);
-        file.getline(buffer, '\n');
+        file.getline(buffer, 1000, '\n');
+        book->setKeyWordsFromString(buffer);
+        file.getline(buffer, 1000, '\n');
         rating = toDouble(buffer);
         book->setRating(rating);
         books.pushBack(book);

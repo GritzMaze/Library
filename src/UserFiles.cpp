@@ -56,11 +56,14 @@ void UserDB::open(const String &filename)
     if (isEmptyFile)
     {
         InputHandle::errMsg("File is empty!");
+        file.close();
         return;
+
     }
     if (!file)
     {
         InputHandle::errMsg("File was not open!");
+        file.close();
         return;
     }
 
@@ -71,11 +74,11 @@ void UserDB::open(const String &filename)
     while (!file.eof())
     {
         User *user = new User;
-        file.getline(buffer, '\n');
+        file.getline(buffer, 1000, '\n');
         user->setUsername(buffer);
-        file.getline(buffer, '\n');
+        file.getline(buffer, 1000, '\n');
         user->setPass(buffer);
-        file.getline(buffer,'\n');
+        file.getline(buffer, 1000, '\n');
         admin = toBool(buffer);
         user->setAdmin(admin);
         users.pushBack(user);

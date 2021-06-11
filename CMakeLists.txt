@@ -33,4 +33,5 @@ add_executable(library "library.cpp"
                 "src/OpenDB.cpp"
                 "src/SaveDB.cpp"
                 "src/BookFiles.cpp"
+                "src/UserFiles.cpp"
                 )

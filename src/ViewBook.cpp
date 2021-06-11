@@ -12,14 +12,14 @@ void BookDB::view()
     {
         books[i]->partlyPrintVertical(7 + i);
     }
-    if (i < 10)
+    if (i < 15)
     {
-        i = 10;
+        i = 15;
     }
-    Draw::drawFooter(i + 2);
-    Draw::gotoxy(20, i + 4);
+    Draw::drawFooter(i + 9);
+    Draw::gotoxy(20, i + 11);
     std::cout << "Enter 0 to go back to Main Menu.";
-    Draw::gotoxy(20, i + 5);
+    Draw::gotoxy(20, i + 13);
 }
 
 void BookDB::viewBooks()
