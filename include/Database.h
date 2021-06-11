@@ -5,17 +5,19 @@
 #include <windows.h>
 #include "Draw.h"
 
-class Database {
+class Database
+{
 public:
-    Database() {};
-    virtual ~Database() {};
+    Database(){};
+    virtual ~Database(){};
 
-    
     virtual void add() = 0;
-    virtual bool remove(const size_t&) = 0;
+    virtual bool remove(const size_t &) = 0;
     bool doesItExist(const String &name)
     {
         std::ifstream f(name.getString());
-        return f.good();
+        bool st = f.good();
+        f.close();
+        return st;
     }
 };

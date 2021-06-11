@@ -36,7 +36,10 @@ bool UserDB::remove(const size_t &id)
         }
         if (remove(id))
         {
-            std::cout << "User deleted sucessfuly!";
+            system("cls");
+            Draw::gotoxy(15, 7);
+            std::cout << "User deleted successfully!";
+            Draw::gotoxy(15, 9);
             std::cout << "Press ANY key to continue...";
             if (getch())
             {

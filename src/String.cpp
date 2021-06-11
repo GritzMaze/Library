@@ -111,15 +111,23 @@ String &String ::operator=(const Vector<char> &other)
     return *this;
 }
 
-String String::operator+(const String &other)
+String String::operator+(const String &other) const
 {
-    String temp;
-    temp = *this;
-    for (int i = 0; i < other.size; i++)
+    String result;
+    result.size += this->size + other.size;
+    char *buffer = nullptr;
+    buffer = create(result.size);
+    for (size_t i = 0; i < size; ++i)
     {
-        temp.add(other.data[i]);
+        buffer[i] = data[i];
     }
-    return temp;
+    for (size_t i = size, j = 0; i < result.size && j < other.size; ++i, ++j)
+    {
+        buffer[i] = other.data[j];
+    }
+    buffer[result.size] = '\0';
+    result.data = buffer;
+    return result;
 }
 
 String &String::operator+=(const String &other)
@@ -128,7 +136,7 @@ String &String::operator+=(const String &other)
     return *this;
 }
 
-String String::operator+(const char *other)
+String String::operator+(const char *other) const
 {
     String result;
     result.size += this->size + strlen(other);
@@ -145,14 +153,9 @@ String String::operator+(const char *other)
     buffer[result.size] = '\0';
     result.data = buffer;
     return result;
-
-    String temp;
-    String temp2{other};
-    temp = *this + temp2;
-    return temp;
 }
 
-String String::operator+(const char &other)
+String String::operator+(const char &other) const
 {
     String temp;
     temp = *this;
@@ -395,6 +398,13 @@ void String::trimEnd(int &num)
         this->size -= num;
         this->data[size] = '\0';
     }
+}
+
+bool String::findElem(const char& elem) const {
+    for(int i = 0; i < size; i++) {
+        if(data[i] == elem) return true;
+    }
+    return false;
 }
 
 const int String::getLength() const

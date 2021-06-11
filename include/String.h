@@ -23,18 +23,18 @@ public:
     ~String();
     String &operator=(const String &);
     String &operator+=(const String &);
-    String operator+(const String &);
+    String operator+(const String &) const;
     bool operator==(const String &) const;
     bool operator!=(const String &) const;
     bool operator<(const String &) const;
     bool operator>(const String &) const;
 
     String &operator=(const char *);
-    String operator+(const char *);
+    String operator+(const char *) const;
     String &operator+=(const char *);
 
 
-    String operator+(const char &);
+    String operator+(const char &) const;
     String &operator+=(const char &);
     String &operator=(const Vector<char>&);
 
@@ -56,6 +56,7 @@ public:
     void trimEnd();
     void trimStart(int);
     void trimEnd(int&);
+    bool findElem(const char&) const;
 
     const int getLength() const;
     const char* getString() const;

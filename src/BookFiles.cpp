@@ -58,7 +58,7 @@ void BookDB::save(const String &filename)
     file.close();
     system("cls");
     Draw::gotoxy(15, 7);
-    std::cout << "Database was successfully saved!";
+    std::cout << "Books were successfully saved!";
     Draw::gotoxy(15, 9);
     std::cout << "Press ANY key to continue...";
     getch();
@@ -66,7 +66,8 @@ void BookDB::save(const String &filename)
 
 void BookDB::open(const String &filename)
 {
-    String filenameExt = filename;
+    String filenameExt;
+    filenameExt = filename;
     filenameExt += ".books";
     if (!doesItExist(filenameExt))
     {
@@ -77,18 +78,23 @@ void BookDB::open(const String &filename)
 
     std::ifstream file;
     file.open(filenameExt.getString());
+    if(!file.is_open()) {
+        InputHandle::errMsg("Books: File was unable to open!");
+        file.close();
+        return;
+    }
 
     bool isEmptyFile = file.peek() == std::ifstream::traits_type::eof();
     if (isEmptyFile)
     {
-        InputHandle::errMsg("File is empty!");
+        InputHandle::errMsg("Books: File is empty!");
         file.close();
         return;
     }
 
     if (!file)
     {
-        InputHandle::errMsg("File was not open!");
+        InputHandle::errMsg("Books: File was not open!");
         file.close();
         return;
     }
@@ -100,10 +106,9 @@ void BookDB::open(const String &filename)
 
     while (!file.eof())
     {
+        
         Book *book = new Book;
-        file.clear();
         file.getline(buffer, 1000, '\n');
-        InputHandle::errMsg(buffer);
         book->setTitle(buffer);
         file.getline(buffer, 1000, '\n');
         book->setAuthor(buffer);
@@ -111,9 +116,7 @@ void BookDB::open(const String &filename)
         book->setGenre(buffer);
         file.getline(buffer, 1000, '\n');
         book->setDesc(buffer);
-        InputHandle::errMsg(buffer);
         file.getline(buffer, 1000, '\n');
-        InputHandle::errMsg(buffer);
         year = toInt(buffer);
         book->setYOP(year);
         file.getline(buffer, 1000, '\n');
@@ -125,4 +128,11 @@ void BookDB::open(const String &filename)
     }
     delete[] buffer;
     file.close();
+
+    system("cls");
+    Draw::gotoxy(15, 7);
+    std::cout << "Books were successfully opened!";
+    Draw::gotoxy(15, 9);
+    std::cout << "Press ANY key to continue...";
+    getch();
 }

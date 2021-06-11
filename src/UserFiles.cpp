@@ -10,17 +10,13 @@ bool toBool(const String &text)
 
 void UserDB::save(const String &filename)
 {
-    //char tmp[256];
-    //getcwd(tmp, 256);
     String filenameExt;
-    //filenameExt = "\\Database\\";
     filenameExt = filename;
     filenameExt += ".users";
-    std::ofstream file;
-    file.open(filenameExt.getString(), std::ios::out);
+    std::ofstream file(filenameExt.getString(), std::ios::out);
     if (file.fail())
     {
-        InputHandle::errMsg("File did not open!");
+        InputHandle::errMsg("Users: File did not open!");
         return;
     }
     size_t size = users.getSize();
@@ -40,7 +36,8 @@ void UserDB::save(const String &filename)
 
 void UserDB::open(const String &filename)
 {
-    String filenameExt = filename;
+    String filenameExt;
+    filenameExt = filename;
     filenameExt += ".users";
     if (!doesItExist(filenameExt))
     {
@@ -48,21 +45,19 @@ void UserDB::open(const String &filename)
         in.close();
         return;
     }
-
     std::ifstream file;
     file.open(filenameExt.getString());
-
     bool isEmptyFile = file.peek() == std::ifstream::traits_type::eof();
     if (isEmptyFile)
     {
-        InputHandle::errMsg("File is empty!");
+        InputHandle::errMsg("Users: File is empty!");
         file.close();
         return;
 
     }
     if (!file)
     {
-        InputHandle::errMsg("File was not open!");
+        InputHandle::errMsg("Users: File was not open!");
         file.close();
         return;
     }
@@ -85,4 +80,11 @@ void UserDB::open(const String &filename)
     }
     delete[] buffer;
     file.close();
+
+    system("cls");
+    Draw::gotoxy(15, 7);
+    std::cout << "Users were successfully saved!";
+    Draw::gotoxy(15, 9);
+    std::cout << "Press ANY key to continue...";
+    getch();
 }
