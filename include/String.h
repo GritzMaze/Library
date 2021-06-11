@@ -14,6 +14,7 @@ private:
     void copy(const String &);
     void erase();
     void resize();
+    char* create(const size_t&) const;
 
 public:
     String();

@@ -17,6 +17,20 @@ void String::erase()
     }
 }
 
+char *String ::create(const size_t &reserve) const
+{
+    char *buffer = nullptr;
+    try
+    {
+        buffer = new char[reserve + 1];
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    return buffer;
+}
+
 String::String()
 {
     this->size = 0;
@@ -110,11 +124,28 @@ String String::operator+(const String &other)
 
 String &String::operator+=(const String &other)
 {
-    return *this = *this + other;
+    *this = *this + other;
+    return *this;
 }
 
 String String::operator+(const char *other)
 {
+    String result;
+    result.size += this->size + strlen(other);
+    char *buffer = nullptr;
+    buffer = create(result.size);
+    for (size_t i = 0; i < size; ++i)
+    {
+        buffer[i] = data[i];
+    }
+    for (size_t i = size, j = 0; i < result.size && j < strlen(other); ++i, ++j)
+    {
+        buffer[i] = other[j];
+    }
+    buffer[result.size] = '\0';
+    result.data = buffer;
+    return result;
+
     String temp;
     String temp2{other};
     temp = *this + temp2;
@@ -131,12 +162,14 @@ String String::operator+(const char &other)
 
 String &String::operator+=(const char &other)
 {
-    return *this = *this + other;
+    *this = *this + other;
+    return *this;
 }
 
 String &String::operator+=(const char *other)
 {
-    return *this = *this + other;
+    *this = *this + other;
+    return *this;
 }
 
 bool String::operator==(const String &other) const
