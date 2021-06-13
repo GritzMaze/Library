@@ -12,5 +12,4 @@ void Commands::saveDB()
     std::cin >> filename;
     users.save(filename);
     books.save(filename);
-
 }

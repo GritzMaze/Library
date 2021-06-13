@@ -10,34 +10,31 @@ class Vector
 
     void erase();
     void resize();
-    void copy(const Vector<T>&);
+    void copy(const Vector<T> &);
 
 public:
-
     Vector();
-    Vector(const T*, const size_t&, const size_t&);
-     Vector<T> &operator=(const Vector<T>&);
+    Vector(const T *, const size_t &, const size_t &);
+    Vector<T> &operator=(const Vector<T> &);
     ~Vector();
 
-    const T& operator[] (const int&) const;
-    T& operator[] (int&);
+    const T &operator[](const int &) const;
+    T &operator[](int &);
 
-
-    void pushBack(const T&);
-    void pushFront(const T&);
-    const T& back() const;
-    const T& front() const;
+    void pushBack(const T &);
+    void pushFront(const T &);
+    const T &back() const;
+    const T &front() const;
     void popBack();
-    void remove(const size_t&);
-    bool isExist(const T&) const;
-    bool isExistUser(const T&) const;
-    void swap(T&, T&);
+    void remove(const size_t &);
+    bool isExist(const T &) const;
+    bool isExistUser(const T &) const;
+    void swap(T &, T &);
 
-
-    const T getElem(const size_t&) const;
+    const T getElem(const size_t &) const;
     const size_t getSize() const;
     const size_t getcapacity() const;
-    
+
     const void print() const;
 
     friend std::ostream &operator<<(std::ostream &out, Vector<T> &vect)
@@ -53,8 +50,9 @@ public:
 template <typename T>
 void Vector<T>::erase()
 {
-    if(arr != nullptr) {
-    delete [] arr;
+    if (arr != nullptr)
+    {
+        delete[] arr;
     }
 }
 
@@ -67,7 +65,7 @@ void Vector<T>::resize()
     {
         temp[i] = arr[i];
     }
-    delete [] arr;
+    delete[] arr;
     arr = temp;
 }
 
@@ -118,7 +116,7 @@ Vector<T>::~Vector()
 }
 
 template <typename T>
-Vector<T>& Vector<T>::operator=(const Vector<T> &other)
+Vector<T> &Vector<T>::operator=(const Vector<T> &other)
 {
     if (this != &other)
     {
@@ -135,9 +133,9 @@ T &Vector<T>::operator[](int &index)
 }
 
 template <typename T>
-const T& Vector<T>::operator[](const int &index) const
+const T &Vector<T>::operator[](const int &index) const
 {
-        return arr[index];
+    return arr[index];
 }
 
 template <typename T>
@@ -173,7 +171,7 @@ void Vector<T>::popBack()
     this->size--;
 }
 
-template<class T>
+template <class T>
 void Vector<T>::remove(const size_t &position)
 {
     if (position > size)
@@ -200,7 +198,7 @@ const T &Vector<T>::back() const
 }
 
 template <class T>
-bool Vector<T>::isExistUser(const T& elem) const
+bool Vector<T>::isExistUser(const T &elem) const
 {
     for (int i = 0; i < this->size; i++)
     {
@@ -213,9 +211,12 @@ bool Vector<T>::isExistUser(const T& elem) const
 }
 
 template <class T>
-bool Vector<T>::isExist(const T& elem) const {
-    for(int i = 0; i < this->size; i++) {
-        if(elem == arr[i]) { 
+bool Vector<T>::isExist(const T &elem) const
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        if (elem == arr[i])
+        {
             return true;
         }
     }
@@ -223,18 +224,19 @@ bool Vector<T>::isExist(const T& elem) const {
 }
 
 template <class T>
-void Vector<T>::swap(T& elem1, T& elem2) {
+void Vector<T>::swap(T &elem1, T &elem2)
+{
     T temp = elem1;
     elem1 = elem2;
     elem2 = temp;
-
 }
 
 template <typename T>
 const T Vector<T>::getElem(const size_t &index) const
 {
 
-    if (index < size) {
+    if (index < size)
+    {
         return this->arr[index];
     }
     return arr[size];
@@ -258,7 +260,7 @@ const void Vector<T>::print() const
     for (int i = 0; i < size; i++)
     {
         std::cout << arr[i];
-        (i<size-1 ? std::cout << ", " : std::cout << "");
+        (i < size - 1 ? std::cout << ", " : std::cout << "");
     }
     std::cout << std::endl;
 }

@@ -78,7 +78,8 @@ void BookDB::open(const String &filename)
 
     std::ifstream file;
     file.open(filenameExt.getString());
-    if(!file.is_open()) {
+    if (!file.is_open())
+    {
         InputHandle::errMsg("Books: File was unable to open!");
         file.close();
         return;
@@ -106,7 +107,7 @@ void BookDB::open(const String &filename)
 
     while (!file.eof())
     {
-        
+
         Book *book = new Book;
         file.getline(buffer, 1000, '\n');
         book->setTitle(buffer);

@@ -66,7 +66,8 @@ TEST_CASE("Operations")
     String s3;
     std::cout << "s1 + s2 = " << s1 + s2 << "\n";
     std::cout << "s2 + s1 = " << s2 + s1 << "\n";
-    std::cout << "s1 + array = " << s1 + "text" << "\n";
+    std::cout << "s1 + array = " << s1 + "text"
+              << "\n";
     std::cout << "string + char = " << s1 + 'a' << "\n";
     s3 += s1 + s2;
     std::cout << "Name: " << s3 << '\n';

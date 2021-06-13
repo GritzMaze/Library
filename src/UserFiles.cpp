@@ -23,7 +23,8 @@ void UserDB::save(const String &filename)
     for (int i = 0; i < size; ++i)
     {
         users[i]->save(file);
-        if(i < size-1) file << "\n";
+        if (i < size - 1)
+            file << "\n";
     }
     file.close();
     system("cls");
@@ -53,7 +54,6 @@ void UserDB::open(const String &filename)
         InputHandle::errMsg("Users: File is empty!");
         file.close();
         return;
-
     }
     if (!file)
     {

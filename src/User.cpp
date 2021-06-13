@@ -101,7 +101,8 @@ const void User::save(std::ofstream &file) const
     file << std::boolalpha << this->admin;
 }
 
-void User::load(std::ifstream& file) {
+void User::load(std::ifstream &file)
+{
     char *buffer = new char[1000];
     file.getline(buffer, '\n');
     this->username = buffer;
@@ -110,9 +111,9 @@ void User::load(std::ifstream& file) {
     file.getline(buffer, '\n');
     this->password = buffer;
     file.clear();
-    file.ignore(10000,'\n');
+    file.ignore(10000, '\n');
     file >> this->admin;
-    delete [] buffer;
+    delete[] buffer;
     // file >> this->username >> this->password >> this->admin;
     // file.ignore(10000, '\n');
 }
@@ -138,7 +139,8 @@ void User::print() const
     std::cout << "ID: " << this->getID() << std::endl;
 }
 
-const void User::printVertical(const int& y) const {
+const void User::printVertical(const int &y) const
+{
     Draw::gotoxy(20, y);
     std::cout << this->username;
     Draw::gotoxy(70, y);

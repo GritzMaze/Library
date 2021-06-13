@@ -1,6 +1,5 @@
 #include "../include/BookDB.h"
 
-
 void BookDB::view()
 {
     system("cls");
@@ -36,8 +35,9 @@ void BookDB::viewBooks()
         viewBooks();
     }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    
-    if (id == 0) return;
+
+    if (id == 0)
+        return;
     if (this->printByID(id))
     {
         Draw::gotoxy(20, 23);

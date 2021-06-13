@@ -5,7 +5,8 @@
 #define BODYRIGHT "\xB2\xDB\xDB\xDB\xDB"
 #define FOOTER "\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2"
 
-void Draw::drawMenu(const bool &isLogged, const bool& isAdmin) {
+void Draw::drawMenu(const bool &isLogged, const bool &isAdmin)
+{
     system("cls"); // Clear the console
     // Opening the Main Menu
     drawHeader("MAIN MENU");
@@ -31,7 +32,8 @@ void Draw::drawMenu(const bool &isLogged, const bool& isAdmin) {
     }
 }
 
-void Draw::drawMenuElem(const String& TITLE, const String& INFO = "", const int& y = 0) {
+void Draw::drawMenuElem(const String &TITLE, const String &INFO = "", const int &y = 0)
+{
     gotoxy(20, y);
     std::cout << BODYLEFT << " " << TITLE;
     gotoxy(57, y);
@@ -40,19 +42,21 @@ void Draw::drawMenuElem(const String& TITLE, const String& INFO = "", const int&
     std::cout << BODYRIGHT;
 }
 
-void Draw::drawSubmenu(const String& title1, const String& title2 = "", const String& title3 = "", const String& title4 = "") {
+void Draw::drawSubmenu(const String &title1, const String &title2 = "", const String &title3 = "", const String &title4 = "")
+{
     gotoxy(20, 5);
     std::cout << title1;
     gotoxy(50, 5);
     std::cout << title2;
-    gotoxy(70,5);
+    gotoxy(70, 5);
     std::cout << title3;
-    gotoxy(90,5);
+    gotoxy(90, 5);
     std::cout << title4;
     // gotoxy(90, 5);
 }
 
-void Draw::drawAdminMenu() {
+void Draw::drawAdminMenu()
+{
     system("cls");
     drawHeader("ADMIN MENU");
     drawMenuElem("COMMAND/ACTION   ", "INFO   ", 5);
@@ -66,7 +70,7 @@ void Draw::drawAdminMenu() {
     gotoxy(20, 21);
 }
 
-void Draw::gotoxy(const int& x,const int& y)
+void Draw::gotoxy(const int &x, const int &y)
 {
     static COORD coord = {0, 0};
     coord.X = x;
@@ -74,7 +78,8 @@ void Draw::gotoxy(const int& x,const int& y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void Draw::drawStart() {
+void Draw::drawStart()
+{
     system("cls");
     char title[25] = "Library mini project";
     gotoxy(10, 4);
@@ -105,7 +110,8 @@ void Draw::drawStart() {
     std::cout << "Press any key to countinue...";
 }
 
-void Draw::drawExit() {
+void Draw::drawExit()
+{
     system("cls");
     gotoxy(18, 3);
     std::cout << "\tLibrary";
@@ -129,17 +135,20 @@ void Draw::drawExit() {
     exit(0);
 }
 
-void Draw::drawHeader(const String& title) {
+void Draw::drawHeader(const String &title)
+{
     gotoxy(20, 3);
     std::cout << HEADER << " " << title << " " << HEADER;
 }
 
-void Draw::drawFooter(const int& y) {
+void Draw::drawFooter(const int &y)
+{
     gotoxy(20, y);
     std::cout << FOOTER << FOOTER << "\xB2";
 }
 
-void Draw::pressAny(const int& y) {
+void Draw::pressAny(const int &y)
+{
     gotoxy(10, y);
     std::cout << "\aWrong Entry! Please re-entered correct option! Press ANY key to continue...";
 }

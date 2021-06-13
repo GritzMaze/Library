@@ -1,6 +1,6 @@
 #include "../include/String.h"
 
-void String::copy(const char* other)
+void String::copy(const char *other)
 {
     size = strlen(other);
     capacity = size + 1;
@@ -44,7 +44,7 @@ String::String()
 
 void String::resize()
 {
-    char* biggerString = nullptr;
+    char *biggerString = nullptr;
     this->capacity *= 2;
     try
     {
@@ -70,10 +70,12 @@ String::String(const String &other)
 
 String::String(const char *other)
 {
-    try {
-    data = new char[strlen(other) + 1];
+    try
+    {
+        data = new char[strlen(other) + 1];
     }
-    catch (std::exception &e) {
+    catch (std::exception &e)
+    {
         std::cerr << e.what() << '\n';
     }
     strncpy(data, other, strlen(other) + 1);
@@ -101,10 +103,11 @@ String &String::operator=(const String &other)
 String &String ::operator=(const char *other)
 {
     char *temp = nullptr;
-    try {
-    temp = new char[strlen(other) + 1];
+    try
+    {
+        temp = new char[strlen(other) + 1];
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
     }
@@ -334,10 +337,11 @@ std::ostream &operator<<(std::ostream &out, const String &string)
 std::istream &operator>>(std::istream &in, String &string)
 {
     char *buffer = nullptr;
-    try {
+    try
+    {
         buffer = new char[1000];
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
     }
@@ -442,10 +446,10 @@ void String::trimEnd()
 
 void String::trimStart(int num)
 {
-        if (num > size)
-        {
-            throw std::out_of_range("index out of bound");
-        }
+    if (num > size)
+    {
+        throw std::out_of_range("index out of bound");
+    }
     for (int k = num; k > 0; k--)
     {
         for (int i = num; i < this->size; i++)
@@ -501,9 +505,9 @@ void String::setString(const char *other)
     this->capacity = this->size + 1;
     try
     {
-    this->data = new char[size];
+        this->data = new char[size];
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
     }

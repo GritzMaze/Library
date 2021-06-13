@@ -1,6 +1,7 @@
 #include "../include/Commands.h"
 
-void Commands::openDB() {
+void Commands::openDB()
+{
     String text;
     system("cls");
     Draw::drawHeader("DATABASE");

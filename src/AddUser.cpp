@@ -22,25 +22,27 @@ void UserDB::add()
     Draw::gotoxy(20, 9);
     std::cout << "Admin rights (Y/N): ";
     std::cin >> ch;
-        if (ch == 'y' || ch == 'Y')
-        {
-            user->setAdmin(true);
-        }
-        else if (ch == 'n' || ch == 'N')
-        {
-            user->setAdmin(false);
-        }
-        else user->setAdmin(false);
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        users.pushBack(user);
-        system("cls");
-        Draw::gotoxy(15, 7);
-        std::cout << "Entry Successful!";
-        Draw::gotoxy(15, 9);
-        std::cout << "Press ANY key to continue...";
-        getch();
+    if (ch == 'y' || ch == 'Y')
+    {
+        user->setAdmin(true);
+    }
+    else if (ch == 'n' || ch == 'N')
+    {
+        user->setAdmin(false);
+    }
+    else
+        user->setAdmin(false);
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    users.pushBack(user);
+    system("cls");
+    Draw::gotoxy(15, 7);
+    std::cout << "Entry Successful!";
+    Draw::gotoxy(15, 9);
+    std::cout << "Press ANY key to continue...";
+    getch();
 }
 
-void UserDB::addUser() {
+void UserDB::addUser()
+{
     add();
 }

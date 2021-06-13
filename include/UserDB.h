@@ -11,25 +11,34 @@
 #include <string>
 #include <iostream>
 
-class UserDB : public Database {
-    private:
-    Vector<User*> users;
+class UserDB : public Database
+{
+private:
+    Vector<User *> users;
 
-    void view();
+    void view() override;
 
-    public:
+public:
     UserDB();
     ~UserDB();
 
     void add() override;
-    bool remove(const size_t&) override;
+    bool remove(const size_t &) override;
 
     void addUser();
     void deleteUser();
     void viewUsers();
 
-    void login(bool&, bool&);
+    void login(bool &, bool &);
 
-    void open(const String &);
-    void save(const String &);
+    void open(const String &) override;
+    void save(const String &) override;
+
+    bool doesItExist(const String &name) override
+    {
+        std::ifstream f(name.getString());
+        bool st = f.good();
+        f.close();
+        return st;
+    }
 };

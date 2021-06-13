@@ -9,7 +9,7 @@ void UserDB::view()
     int i = 0;
     for (; i < size; ++i)
     {
-        users[i]->printVertical(7+i);
+        users[i]->printVertical(7 + i);
     }
     if (i < 15)
     {
@@ -35,8 +35,9 @@ void UserDB::viewUsers()
         viewUsers();
     }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-     
-     if (choice == 0) return;
+
+    if (choice == 0)
+        return;
 
     return;
 }

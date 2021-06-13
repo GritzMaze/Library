@@ -83,13 +83,20 @@ void BookDB::sortChoice2(const String &choice)
 
 void BookDB::sortCross(const String &choice, const String &option)
 {
-    if(choice == "year") {
+    if (choice == "year")
+    {
         sortByYear(option);
-    } else if(choice == "rating") {
+    }
+    else if (choice == "rating")
+    {
         sortByRating(option);
-    } else if(choice == "title") {
+    }
+    else if (choice == "title")
+    {
         sortByTitle(option);
-    } else if(choice == "author") {
+    }
+    else if (choice == "author")
+    {
         sortByAuthor(option);
     }
     system("cls");
@@ -100,7 +107,7 @@ void BookDB::sortCross(const String &choice, const String &option)
     getch();
 }
 
-void BookDB::sortByYear(const String& direct)
+void BookDB::sortByYear(const String &direct)
 {
     int size = books.getSize();
     for (int i = 0; i < size - 1; i++)
@@ -110,15 +117,18 @@ void BookDB::sortByYear(const String& direct)
             int elem1 = books[j]->getYOP();
             int elem2 = books[j + 1]->getYOP();
             int k = j + 1;
-            if (direct == "asc" && elem1 > elem2) {
+            if (direct == "asc" && elem1 > elem2)
+            {
                 books.swap(books[j], books[k]);
-            } else if(direct == "desc" && elem1 < elem2) {
+            }
+            else if (direct == "desc" && elem1 < elem2)
+            {
                 books.swap(books[j], books[k]);
             }
         }
 }
 
-void BookDB::sortByRating(const String& direct)
+void BookDB::sortByRating(const String &direct)
 {
     int size = books.getSize();
     for (int i = 0; i < size - 1; i++)
@@ -128,16 +138,20 @@ void BookDB::sortByRating(const String& direct)
             double elem1 = books[j]->getRating();
             double elem2 = books[j + 1]->getRating();
             int k = j + 1;
-            if (direct == "asc" && elem1 > elem2) {
+            if (direct == "asc" && elem1 > elem2)
+            {
                 books.swap(books[j], books[k]);
-            } else if(direct == "desc" && elem1 < elem2) {
+            }
+            else if (direct == "desc" && elem1 < elem2)
+            {
                 books.swap(books[j], books[k]);
             }
         }
     }
 }
 
-void BookDB::sortByTitle(const String& direct) {
+void BookDB::sortByTitle(const String &direct)
+{
     int size = books.getSize();
     for (int i = 0; i < size - 1; i++)
     {
@@ -158,7 +172,8 @@ void BookDB::sortByTitle(const String& direct) {
     }
 }
 
-void BookDB::sortByAuthor(const String& direct) {
+void BookDB::sortByAuthor(const String &direct)
+{
     int size = books.getSize();
     for (int i = 0; i < size - 1; i++)
     {

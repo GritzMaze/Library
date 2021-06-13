@@ -7,17 +7,16 @@
 
 class Database
 {
+protected:
+    virtual void view() = 0;
+
 public:
     Database(){};
     virtual ~Database(){};
 
     virtual void add() = 0;
     virtual bool remove(const size_t &) = 0;
-    bool doesItExist(const String &name)
-    {
-        std::ifstream f(name.getString());
-        bool st = f.good();
-        f.close();
-        return st;
-    }
+    virtual void open(const String &) = 0;
+    virtual void save(const String &) = 0;
+    virtual bool doesItExist(const String &) = 0;
 };

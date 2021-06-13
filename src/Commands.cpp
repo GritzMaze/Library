@@ -44,7 +44,7 @@ void Commands::choice()
             }
         }
         else
-        adminPanel();
+            adminPanel();
         break;
     }
     default:
@@ -139,17 +139,20 @@ void Commands::deleteBooks()
     mainmenu();
 }
 
-void Commands::searchBooks() {
+void Commands::searchBooks()
+{
     books.search();
     mainmenu();
 }
 
-void Commands::sortBooks() {
+void Commands::sortBooks()
+{
     books.sortBooks();
     mainmenu();
 }
 
-void Commands::adminPanel() {
+void Commands::adminPanel()
+{
     Draw::drawAdminMenu();
     std::cout << "Enter your choice:";
     admin_choice();

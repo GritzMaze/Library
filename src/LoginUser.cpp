@@ -1,6 +1,7 @@
 #include "../include/UserDB.h"
 
-void UserDB::login(bool& admin, bool& logged) {
+void UserDB::login(bool &admin, bool &logged)
+{
     system("cls");
     Draw::gotoxy(15, 7);
 

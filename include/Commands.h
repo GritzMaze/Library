@@ -9,29 +9,29 @@
 #include "BookDB.h"
 
 class Commands
-    {
+{
 
-        private:
-            bool isAdmin;
-            bool isLogged;
-            UserDB users;
-            BookDB books;
+private:
+    bool isAdmin;
+    bool isLogged;
+    UserDB users;
+    BookDB books;
 
-            void choice();
-            void admin_choice();
-            void mainmenu();
-            void login();
-            void close();
-            void addBooks();
-            void viewBooks();
-            void deleteBooks();
-            void searchBooks();
-            void sortBooks();
-            void adminPanel();
-            void openDB();
-            void saveDB();
+    void choice();
+    void admin_choice();
+    void mainmenu();
+    void login();
+    void close();
+    void addBooks();
+    void viewBooks();
+    void deleteBooks();
+    void searchBooks();
+    void sortBooks();
+    void adminPanel();
+    void openDB();
+    void saveDB();
 
-        public:
-            Commands();
-            void start();
-    };
+public:
+    Commands();
+    void start();
+};
