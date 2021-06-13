@@ -52,7 +52,7 @@ void BookDB::sortChoice()
     {
         Draw::pressAny(25);
         if (getch())
-            search();
+            sortBooks();
         break;
     }
     }

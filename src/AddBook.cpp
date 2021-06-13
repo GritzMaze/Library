@@ -37,6 +37,7 @@ void BookDB::add()
     Draw::gotoxy(20, 15);
     std::cout << "Keywords(with spaces): ";
     std::cin >> temp;
+    temp.toLower();
     book->setKeyWordsFromString(temp);
     Draw::gotoxy(20, 17);
     std::cout << "Rating(1-5): ";

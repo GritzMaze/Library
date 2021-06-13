@@ -480,6 +480,28 @@ bool String::findElem(const char &elem) const
     return false;
 }
 
+void String ::toUpper()
+{
+    for (size_t i = 0; i < size; ++i)
+    {
+        if (data[i] >= 'a' && data[i] <= 'z')
+        {
+            data[i] = data[i] - ('a' - 'A');
+        }
+    }
+}
+
+void String ::toLower()
+{
+    for (size_t i = 0; i < size; ++i)
+    {
+        if (data[i] >= 'A' && data[i] <= 'Z')
+        {
+            data[i] = data[i] + ('a' - 'A');
+        }
+    }
+}
+
 const int String::getLength() const
 {
     return this->size;

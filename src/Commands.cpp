@@ -122,6 +122,10 @@ void Commands::login()
 
 void Commands::addBooks()
 {
+    if(!isLogged) {
+        InputHandle::errMsg("You are not logged!");
+        mainmenu();
+    } 
     system("cls");
     books.add();
     mainmenu();
@@ -135,6 +139,11 @@ void Commands::viewBooks()
 
 void Commands::deleteBooks()
 {
+    if (!isLogged)
+    {
+        InputHandle::errMsg("You are not logged!");
+        mainmenu();
+    }
     books.deleteBooks();
     mainmenu();
 }
@@ -147,6 +156,11 @@ void Commands::searchBooks()
 
 void Commands::sortBooks()
 {
+    if (!isLogged)
+    {
+        InputHandle::errMsg("You are not logged!");
+        mainmenu();
+    }
     books.sortBooks();
     mainmenu();
 }

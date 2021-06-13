@@ -3,6 +3,7 @@
 void BookDB::viewSearched(const String &criteria)
 {
     String temp = InputHandle::inputValue();
+    temp.toLower();
     system("cls");
     Draw::drawHeader("BOOK LIST");
     Draw::drawSubmenu("TITLE", "AUTHOR", "GENRE", "ID");
@@ -35,10 +36,16 @@ int BookDB::searchByTitle(const String &title)
 {
     int size = books.getSize();
     int counter = 0;
-    for (int i = 0; i < size && books[i]->getTitle() == title; ++i)
+    String temp_title;
+    for (int i = 0; i < size; ++i)
     {
-        books[i]->partlyPrintVertical(7 + counter);
-        counter++;
+        temp_title = books[i]->getTitle();
+        temp_title.toLower();
+        if (temp_title == title)
+        {
+            books[i]->partlyPrintVertical(7 + counter);
+            counter++;
+        }
     }
     return counter;
 }
@@ -47,10 +54,16 @@ int BookDB::searchByAuthor(const String &author)
 {
     int size = books.getSize();
     int counter = 0;
-    for (int i = 0; i < size && books[i]->getAuthor() == author; ++i)
+    String temp_author;
+    for (int i = 0; i < size; ++i)
     {
-        books[i]->partlyPrintVertical(7 + counter);
-        counter++;
+        temp_author = books[i]->getAuthor();
+        temp_author.toLower();
+        if (temp_author == author)
+        {
+            books[i]->partlyPrintVertical(7 + counter);
+            counter++;
+        }
     }
     return counter;
 }
@@ -59,10 +72,13 @@ int BookDB::searchByByKeyword(const String &keyword)
 {
     int size = books.getSize();
     int counter = 0;
-    for (int i = 0; i < size && books[i]->getKeywords().isExist(keyword); ++i)
+    for (int i = 0; i < size; ++i)
     {
-        books[i]->partlyPrintVertical(7 + counter);
-        counter++;
+        if (books[i]->getKeywords().isExist(keyword))
+        {
+            books[i]->partlyPrintVertical(7 + counter);
+            counter++;
+        }
     }
     return counter;
 }

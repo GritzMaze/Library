@@ -56,7 +56,8 @@ public:
     void trimStart(int);
     void trimEnd(int &);
     bool findElem(const char &) const;
-
+    void toUpper();
+    void toLower();
     const int getLength() const;
     const char *getString() const;
     const int getCapacity() const;

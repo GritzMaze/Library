@@ -29,7 +29,7 @@ void UserDB::save(const String &filename)
     file.close();
     system("cls");
     Draw::gotoxy(15, 7);
-    std::cout << "Users successfully saved!";
+    std::cout << "Users successfully opened!";
     Draw::gotoxy(15, 9);
     std::cout << "Press ANY key to continue...";
     getch();
